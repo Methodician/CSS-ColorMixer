@@ -1,7 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { AngularFireModule } from 'angularFire2';
+//import { HttpModule } from '@angular/http';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyA5rAiXARCh82cAjG4cfyeOgBMfgBJylpo",
+  authDomain: "css-colormixer-test.firebaseapp.com",
+  databaseURL: "https://css-colormixer-test.firebaseio.com",
+  storageBucket: "css-colormixer-test.appspot.com",
+  messagingSenderId: "518501943795"
+}
 
 import { AppComponent } from './app.component';
 
@@ -12,7 +21,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
