@@ -1,0 +1,12 @@
+<!--<div *ngFor="let c of colors | async" (dragStart)="startColorDrag($event)" (dragEnd)="endColorDrag()" makeDraggable [makeDraggable]="c"
+    class="colorPick" id="{{ c.$key }}">
+    <div>
+        <label>{{ showHex ? c.hex : c.rgb.slice(3) }}</label>
+        <div class="colorCircle" [style.background-color]="c.hex" (click)="pickColor(c)"></div>
+    </div>
+</div>-->
+
+
+<label>{{ color.hex }}</label>
+<div class="colorCircle" [style.background-color]="color.hex" [style.height.px]="baseSize * sizeMultiplier" [style.width.px]="baseSize * sizeMultiplier"
+    (click)="click()"></div>

@@ -8,9 +8,27 @@ import { AngularFire, FirebaseListObservable } from 'angularFire2';
 })
 export class AppComponent {
   items: FirebaseListObservable<any[]>;
-  constructor(af: AngularFire) {
+  constructor(private af: AngularFire) {
     this.items = af.database.list('/items');
   }
 
-  title = 'app works!';
+  loginGoogle() {
+    this.af.auth.login();
+  }
+
+  loginTwitter() {
+    alert('Twitter login not implemented yet... Please use Google');
+    /*this.af.auth.login({
+      provider: AuthProviders.Twitter,
+      method: AuthMethods.Redirect
+    });*/
+  }
+
+  loginFacebook() {
+    alert('Facebook login not implemented yet... Please use Google');
+  }
+
+  logout() {
+    this.af.auth.logout();
+  }
 }

@@ -1,0 +1,50 @@
+/*.colorPick{
+    display: inline-block;
+    margin: 8px;
+}*/
+color-circle{
+    display: inline-block;
+    margin: 8px;
+}
+
+.colorPicksContainer{
+    text-align: center;
+    /*padding: 0 25%;*/
+}
+
+#colorPoolContainer{
+    padding: 0 25%;
+}
+
+#colorPool{
+    height: 150px;
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 35px;
+    overflow: hidden;
+    /*border: white solid 9px;*/
+}
+#colorPoolLeft{
+    /*background-color: green;*/
+    height: 100%;
+    width: 35%;
+    /*border-radius: 20% 0 0 20%;*/
+    float: left;
+    /*pointer-events: none;*/
+
+}
+#colorPoolRight{
+    /*background-color: red;*/
+    height: 100%;
+    width: 65%;
+    /*border-radius: 0 20% 20% 0;*/
+    float: right;
+    /*pointer-events: none;*/
+}
+.pointerEventsDisabled{
+    pointer-events: none;
+}
+
+#undoRow{
+    margin: 25px 0 -10px 0;
+}
