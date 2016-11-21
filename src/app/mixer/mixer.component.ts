@@ -16,9 +16,9 @@ export class MixerComponent implements OnInit {
   minusOn = false;
   poolSet = false;
   showHex = true;
-  //  historyIndex = 0;
-  //  colorHistorical = false;
-  //  undoingOrRedoing = false;
+  historyIndex = 0;
+  colorHistorical = false;
+  undoingOrRedoing = false;
   //  colorsInitialized = false;
   //inInnerPool = false;
   //inPool = false;
@@ -55,14 +55,14 @@ export class MixerComponent implements OnInit {
       /*if (this.draggingColor) {
         this.lastColor = this.colorPoolHistory[this.colorPoolHistory.length - 2];
         this.setElementColor('colorPoolLeft', this.lastColor);
-      }
+      }*/
       if (this.undoingOrRedoing) {
         if (this.historyIndex == 0)
           this.lastColor = this.colorPoolHistory[this.colorPoolHistory.length - 1];
         else this.lastColor = this.colorPoolHistory[this.historyIndex - 1];
 
         this.setElementColor('colorPoolLeft', this.lastColor);
-      }*/
+      }
       this.setElementColor('colorPoolRight', color);
       this.poolColor = color;
       this.poolSet = true;
@@ -81,6 +81,43 @@ export class MixerComponent implements OnInit {
       this.poolColor = newColor;
     }
     this.colorPoolHistory.push(this.poolColor);
+  }
+
+  undo() {
+    if (this.colorPoolHistory.length > 1) {
+      this.undoingOrRedoing = true;
+      if (this.historyIndex < 1) {
+        let len = this.colorPoolHistory.length;
+        this.historyIndex = len - 2
+        this.colorHistorical = true;
+      } else if (this.historyIndex > 0) {
+        this.historyIndex--;
+      }
+
+      let color = this.colorPoolHistory[this.historyIndex];
+      this.poolSet = false;
+      this.pickColor(color);
+      this.colorPoolHistory.pop();
+    }
+    this.undoingOrRedoing = false;
+  }
+  redo() {
+    if (this.colorPoolHistory.length > 1) {
+      this.undoingOrRedoing = true;
+      let len = this.colorPoolHistory.length;
+      if (this.historyIndex >= len - 1) {
+        this.historyIndex = 0
+        this.colorHistorical = true;
+      } else if (this.historyIndex <= len - 1) {
+        this.historyIndex++;
+      }
+
+      let color = this.colorPoolHistory[this.historyIndex];
+      this.poolSet = false;
+      this.pickColor(color);
+      this.colorPoolHistory.pop();
+    }
+    this.undoingOrRedoing = false;
   }
 
   subtractColors(c1: IrgbColor, c2: IrgbColor): IrgbColor {

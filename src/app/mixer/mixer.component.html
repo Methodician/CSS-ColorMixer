@@ -10,16 +10,16 @@
     </div>
     <div class="col-sm-8">
       <div class="row" id="colorPoolContainer" style="text-align: center;">
-        <!--<div class="row" id="undoRow">
-                    <div class="row">
-                        <label style="margin-right: 130px;">{{ historyIndex == 0 ? '' : historyIndex }}</label>
-                        <label style="margin-left: 130px;">{{ colorPoolHistory.length == 1 ? '' : colorPoolHistory.length - 1 }}</label>
-                    </div>
-                    <div class="row">
-                        <i (click)="undo()" style="margin-right: 130px;" class="fa fa-undo"></i>
-                        <i (click)="redo()" style="margin-left: 130px;" class="fa fa-repeat"></i>
-                    </div>
-                </div>-->
+        <div class="row" id="undoRow">
+          <div class="row">
+            <label style="margin-right: 130px;">{{ historyIndex == 0 ? '' : historyIndex }}</label>
+            <label style="margin-left: 130px;">{{ colorPoolHistory.length == 1 ? '' : colorPoolHistory.length - 1 }}</label>
+          </div>
+          <div class="row">
+            <i (click)="undo()" style="margin-right: 130px;" class="fa fa-undo"></i>
+            <i (click)="redo()" style="margin-left: 130px;" class="fa fa-repeat"></i>
+          </div>
+        </div>
         <div id="colorPool">
           <!--makeDroppable (dragEnter)="enterPool($event)" (dragLeave)="leavePool($event)"-->
           <div id="colorPoolLeft" (click)="saveColor('left')"></div>
