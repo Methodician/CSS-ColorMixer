@@ -48,10 +48,6 @@ export class MixerComponent implements OnInit {
     this.colors = this.db.list('colors');
     this.setElementColor('colorPool', this.poolColor);
     this.colorPoolHistory.push(this.poolColor);
-    //this.colors.subscribe(c => {
-    /*  if (!c[0] && !this.colorsInitialized)
-        this.initializeDbColors();
-    });*/
   }
 
   pickColor(color: IrgbColor) {
