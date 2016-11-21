@@ -7,9 +7,20 @@ color-circle{
     margin: 8px;
 }
 
+
+
 .colorPicksContainer{
     text-align: center;
     /*padding: 0 25%;*/
+}
+
+#generatedColors {
+    max-width: 50vw;
+    padding: 0 70px;
+}
+#generatedCircles {
+    overflow-y: scroll;
+    max-height: 50vh;
 }
 
 #colorPoolContainer{

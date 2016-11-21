@@ -9,12 +9,18 @@ import { AngularFireModule, AuthMethods, AuthProviders } from 'angularFire2';
 import { AppComponent } from './app.component';
 import { MixerComponent } from './mixer/mixer.component';
 import { ColorCircleComponent } from './color-circle/color-circle.component';
+import { LeftUiComponent } from './left-ui/left-ui.component';
+import { RightUiComponent } from './right-ui/right-ui.component';
+import { PalettesComponent } from './palettes/palettes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MixerComponent,
-    ColorCircleComponent
+    ColorCircleComponent,
+    LeftUiComponent,
+    RightUiComponent,
+    PalettesComponent
   ],
   imports: [
     BrowserModule,
