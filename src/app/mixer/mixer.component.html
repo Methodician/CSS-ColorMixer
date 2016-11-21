@@ -31,13 +31,13 @@
       </div>
       <div class="row colorPicksContainer">
         <div class="row">
-          <div class="row">Core Colors:</div>
+          <div class="row"><h3>MIX US:</h3></div>
           <div class="row">
             <color-circle *ngFor="let color of coreColors" [color]="color" [sizeMultiplier]="1.2" [id]="'core-' + color.hex" (clicked)="pickColor($event)"></color-circle>
           </div>
         </div>
         <div class="row">
-          <div class="row">Generated:</div>
+          <div class="row"><h3>YOUR COLORS:</h3></div>
           <div class="row">
             <color-circle *ngFor="let color of colors | async" [color]="color" [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
           </div>

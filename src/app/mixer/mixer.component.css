@@ -12,22 +12,28 @@ color-circle{
     /*padding: 0 25%;*/
 }
 
+.fa {
+    font-size: 2.5em;
+    padding: 0px 160px 30px;
+}
+
 #colorPoolContainer{
-    padding: 0 25%;
+    padding: 0px 0px 10px;
+    margin-top: -25px;
 }
 
 #colorPool{
-    height: 150px;
-    width: 300px;
+    height: 300px;
+    width: 700px;
     margin: 0 auto;
-    border-radius: 35px;
+    border-radius: 25px;
     overflow: hidden;
     /*border: white solid 9px;*/
 }
 #colorPoolLeft{
     /*background-color: green;*/
     height: 100%;
-    width: 35%;
+    width: 50%;
     /*border-radius: 20% 0 0 20%;*/
     float: left;
     /*pointer-events: none;*/
@@ -36,7 +42,7 @@ color-circle{
 #colorPoolRight{
     /*background-color: red;*/
     height: 100%;
-    width: 65%;
+    width: 50%;
     /*border-radius: 0 20% 20% 0;*/
     float: right;
     /*pointer-events: none;*/
