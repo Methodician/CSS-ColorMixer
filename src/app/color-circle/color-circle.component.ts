@@ -11,7 +11,7 @@ export class ColorCircleComponent implements OnInit {
   @Input() sizeMultiplier: number = 1;
   @Output() clicked = new EventEmitter();
 
-  baseSize: number = 55;
+  baseSize: number = 100;
 
   constructor() { }
   ngOnInit() {
