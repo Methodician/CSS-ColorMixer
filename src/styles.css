@@ -4,16 +4,23 @@ body {
     color: #e5e5e5;
     margin: 15px;
 }
+/*mixer {
+  max-width: 75vw;
+}*/
+#poolContainer {
+  width: 60vw;
+}
 
 .mixer-column {
     float: left;
-    position: aboslute;
+    /*position: aboslute;*/
     min-height: 75vh;
     border: 1px solid #406060
 }
 
 .side-ui {
-  min-width: 175px;
+  /*min-width: 175px;*/
+  width: 18vw;
 }
 
 .side-button {

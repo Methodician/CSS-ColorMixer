@@ -1,5 +1,6 @@
-<div style="margin: auto;">
-  <div id="poolContainer">
+<div>
+  <left-ui class="mixer-column side-ui"></left-ui>
+  <div class="mixer-column" id="poolContainer">
     <!--<div class="row" style="margin-top: 67px;">
       <button (click)="toggleAvg()" class="btn" [class.btn-primary]="!averageOn" [class.btn-success]="averageOn">Mix (avg)</button>
       <button (click)="toggleAdd()" class="btn" [class.btn-primary]="!addOn" [class.btn-success]="addOn">Combine (add)</button>
@@ -9,7 +10,7 @@
       <button (click)="toggleHex()" class="btn btn-info">Toggle {{ showHex ? 'RGB' : 'Hex' }}</button>
     </div>-->
     <div class="row">
-      <div class="row" id="colorPoolContainer" style="text-align: center;">
+      <div class="row" id="colorPoolContainer">
         <div class="row" id="undoRow">
           <div class="row">
             <label style="margin-right: 130px;">{{ historyIndex == 0 ? '' : historyIndex }}</label>
@@ -29,7 +30,9 @@
         </div>
         <!--{{ showHex ? poolColor.hex : poolColor.rgb.slice(3) }}-->
       </div>
-      <div class="row colorPicksContainer">
+      
+    </div>
+    <div class="row colorPicksContainer">
         <div class="row">
           <div class="row">
             <h3>MIX US:</h3>
@@ -47,6 +50,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
+  <right-ui class="mixer-column side-ui"></right-ui>
 </div>

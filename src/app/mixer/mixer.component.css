@@ -11,6 +11,7 @@ color-circle{
 
 .colorPicksContainer{
     text-align: center;
+    display: initial;
     /*padding: 0 25%;*/
 }
 
@@ -18,14 +19,16 @@ color-circle{
 #generatedColors {
     max-width: 50vw;
     padding: 0 70px;
+    box-sizing: content-box;
 }
+
 #generatedCircles {
     overflow-y: scroll;
     max-height: 50vh;
 }
 
 .fa {
-    font-size: 2.5em;
+    font-size: 2em;
     padding: 0px 160px 30px;
 
 }
@@ -33,11 +36,12 @@ color-circle{
 #colorPoolContainer{
     padding: 0px 0px 10px;
     margin-top: -25px;
+    text-align: center;
 }
 
 #colorPool{
     height: 300px;
-    width: 700px;
+    width: 80%;
     margin: 0 auto;
     border-radius: 25px;
     overflow: hidden;
