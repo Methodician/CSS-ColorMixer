@@ -39,11 +39,11 @@
       <div id="colorPool">
         <!--makeDroppable (dragEnter)="enterPool($event)" (dragLeave)="leavePool($event)"-->
         <div id="colorPoolLeft" (click)="saveColor('left')">
-          <span>{{ lastColor?.hex }}</span>
+          <span *ngIf="lastColor" class="colorLabel">{{ lastColor?.hex }}</span>
         </div>
         <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
         <div id="colorPoolRight" (click)="saveColor('right')">
-          <span>{{ poolColor?.hex }}</span>
+          <span class="colorLabel">{{ poolColor?.hex }}</span>
         </div>
         <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
       </div>
@@ -56,7 +56,7 @@
         <!--<h3>MIX US:</h3>-->
       </div>
       <div class="row">
-        <color-circle *ngFor="let color of coreColors" [color]="color" [sizeMultiplier]="1.2" [id]="'core-' + color.hex" (clicked)="pickColor($event)"></color-circle>
+        <color-circle *ngFor="let color of coreColors" [color]="color" [sizeMultiplier]="1" [id]="'core-' + color.hex" (clicked)="pickColor($event)"></color-circle>
       </div>
     </div>
     <div class="row" id="generatedColors">
