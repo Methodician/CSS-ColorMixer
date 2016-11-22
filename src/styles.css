@@ -7,30 +7,7 @@ body {
 /*mixer {
   max-width: 75vw;
 }*/
-#poolContainer {
-  width: 60vw;
-}
 
-.mixer-column {
-    float: left;
-    /*position: aboslute;*/
-    min-height: 75vh;
-    border: 1px solid #406060
-}
-
-.side-ui {
-  /*min-width: 175px;*/
-  width: 18vw;
-}
-
-.side-button {
-  display: block;
-  position: relative;
-}
-.side-ui-set {
-  position: absolute;
-  border: 1px solid white;
-}
 
 
 /*BOOTSTRAP SNIPPETS:*/

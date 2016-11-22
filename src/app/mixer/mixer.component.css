@@ -7,7 +7,38 @@ color-circle{
     margin: 8px;
 }
 
+/*#poolContainer {
+  width: 60vw;
+}*/
+.mixer-ui-item{
+  display: block;
+  position: relative;
+}
+/*.mixer-ui-button {
+  margin: 15px auto;
+}*/
 
+.mixer-ui-set {
+    position: absolute;
+    border: 1px solid #008080;
+    background-color: #384048;
+    padding: 5px;
+}
+.mixer-ui-set > button{
+    margin: 15px auto;
+}
+.mixer-ui-set > span {
+    text-align: center;
+}
+.mixer-ui-left {
+  left: 0;
+  border-radius: 0 10% 10% 0;
+}
+
+.mixer-ui-right {
+  right: 0;
+  border-radius: 10% 0 0 10%;
+}
 
 .colorPicksContainer{
     text-align: center;
@@ -15,11 +46,16 @@ color-circle{
     /*padding: 0 25%;*/
 }
 
+#mixer-area {
+    max-width: 75vw;
+    margin: auto;
+}
 
 #generatedColors {
-    max-width: 50vw;
-    padding: 0 70px;
-    box-sizing: content-box;
+    max-width: 70vw;
+    margin: auto;
+/*    padding: 0 70px;
+    box-sizing: content-box;*/
 }
 
 #generatedCircles {
@@ -27,11 +63,11 @@ color-circle{
     max-height: 50vh;
 }
 
-.fa {
+/*.fa {
     font-size: 2em;
     padding: 0px 160px 30px;
 
-}
+}*/
 
 #colorPoolContainer{
     padding: 0px 0px 10px;
@@ -71,3 +107,21 @@ color-circle{
 #undoRow{
     margin: 25px 0 -10px 0;
 }
+
+/* Left Side Ui*/
+#mixerSettings{
+    top: 20vh;
+}
+#clearColors{
+    top: 50vh;
+}
+#resetPool{
+    top: 20vh;
+}
+#delete{
+    top: 50vh;
+}
+.side-button {
+    margin-top: 15px;
+}
+

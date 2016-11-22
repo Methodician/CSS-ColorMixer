@@ -1,7 +1,19 @@
-<div>
-  <left-ui class="mixer-column side-ui"></left-ui>
-  <div class="mixer-column" id="poolContainer">
-    <!--<div class="row" style="margin-top: 67px;">
+<div id="mixerSettings" class="mixer-ui-set mixer-ui-left">
+  <span class="mixer-ui-item">average</span>
+  <button (click)="toggleAvg()" class="mixer-ui-item  btn btn-circle" [class.btn-success]="averageOn">
+          <i *ngIf="averageOn" class="fa fa-check"></i>
+        </button>
+  <button (click)="toggleAdd()" class="mixer-ui-item  btn btn-default" [class.btn-success]="addOn">add</button>
+  <button (click)="toggleMinus()" class="mixer-ui-item  btn btn-default" [class.btn-success]="minusOn">subtract</button>
+  <button (click)="toggleHex()" class="mixer-ui-item  btn btn-primary">rgb/hex switch</button>
+</div>
+<div id="clearColors" class="mixer-ui-set mixer-ui-left">
+  <span class="mixer-ui-item">clear</span>
+  <button (click)="clearColors()" class="mixer-ui-item  btn btn-circle btn-danger">
+          <i class="fa fa-bomb"></i>
+        </button>
+</div>
+<!--<div class="row" style="margin-top: 67px;">
       <button (click)="toggleAvg()" class="btn" [class.btn-primary]="!averageOn" [class.btn-success]="averageOn">Mix (avg)</button>
       <button (click)="toggleAdd()" class="btn" [class.btn-primary]="!addOn" [class.btn-success]="addOn">Combine (add)</button>
       <button (click)="toggleMinus()" class="btn" [class.btn-primary]="!minusOn" [class.btn-success]="minusOn">Subtract (minus)</button>
@@ -9,47 +21,64 @@
       <button (click)="clearColors()" class="btn btn-primary">Clear Colors</button>
       <button (click)="toggleHex()" class="btn btn-info">Toggle {{ showHex ? 'RGB' : 'Hex' }}</button>
     </div>-->
-    <div class="row">
-      <div class="row" id="colorPoolContainer">
-        <div class="row" id="undoRow">
-          <div class="row">
-            <label style="margin-right: 130px;">{{ historyIndex == 0 ? '' : historyIndex }}</label>
-            <label style="margin-left: 130px;">{{ colorPoolHistory.length == 1 ? '' : colorPoolHistory.length - 1 }}</label>
-          </div>
-          <div class="row">
-            <i (click)="undo()" style="margin-right: 130px;" class="fa fa-undo"></i>
-            <i (click)="redo()" style="margin-left: 130px;" class="fa fa-repeat"></i>
-          </div>
-        </div>
-        <div id="colorPool">
-          <!--makeDroppable (dragEnter)="enterPool($event)" (dragLeave)="leavePool($event)"-->
-          <div id="colorPoolLeft" (click)="saveColor('left')"></div>
-          <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
-          <div id="colorPoolRight" (click)="saveColor('right')"></div>
-          <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
-        </div>
-        <!--{{ showHex ? poolColor.hex : poolColor.rgb.slice(3) }}-->
-      </div>
-      
-    </div>
-    <div class="row colorPicksContainer">
+
+
+<div id="mixer-area">
+  <div class="row">
+    <div class="row" id="colorPoolContainer">
+      <div class="row" id="undoRow">
         <div class="row">
-          <div class="row">
-            <h3>MIX US:</h3>
-          </div>
-          <div class="row">
-            <color-circle *ngFor="let color of coreColors" [color]="color" [sizeMultiplier]="1.2" [id]="'core-' + color.hex" (clicked)="pickColor($event)"></color-circle>
-          </div>
+          <label style="margin-right: 130px;">{{ historyIndex == 0 ? '' : historyIndex }}</label>
+          <label style="margin-left: 130px;">{{ colorPoolHistory.length == 1 ? '' : colorPoolHistory.length - 1 }}</label>
         </div>
-        <div class="row" id="generatedColors">
-          <div class="row">
-            <h3>YOUR COLORS:</h3>
-          </div>
-          <div class="row" id="generatedCircles">
-            <color-circle *ngFor="let color of colors | async" [color]="color" [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
-          </div>
+        <div class="row">
+          <i (click)="undo()" style="margin-right: 130px;" class="fa fa-undo"></i>
+          <i (click)="redo()" style="margin-left: 130px;" class="fa fa-repeat"></i>
         </div>
       </div>
+      <div id="colorPool">
+        <!--makeDroppable (dragEnter)="enterPool($event)" (dragLeave)="leavePool($event)"-->
+        <div id="colorPoolLeft" (click)="saveColor('left')">
+          <span>{{ lastColor?.hex }}</span>
+        </div>
+        <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
+        <div id="colorPoolRight" (click)="saveColor('right')">
+          <span>{{ poolColor?.hex }}</span>
+        </div>
+        <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
+      </div>
+      <!--{{ showHex ? poolColor.hex : poolColor.rgb.slice(3) }}-->
+    </div>
   </div>
-  <right-ui class="mixer-column side-ui"></right-ui>
+  <div class="row colorPicksContainer">
+    <div class="row">
+      <div class="row">
+        <!--<h3>MIX US:</h3>-->
+      </div>
+      <div class="row">
+        <color-circle *ngFor="let color of coreColors" [color]="color" [sizeMultiplier]="1.2" [id]="'core-' + color.hex" (clicked)="pickColor($event)"></color-circle>
+      </div>
+    </div>
+    <div class="row" id="generatedColors">
+      <div class="row">
+        <!--<h3>YOUR COLORS:</h3>-->
+      </div>
+      <div class="row" id="generatedCircles">
+        <color-circle *ngFor="let color of colors | async" [color]="color" [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="resetPool" class="mixer-ui-set mixer-ui-right">
+  <span class="mixer-ui-item">reset pool</span>
+  <button (click)="resetPool()" class="mixer-ui-item  btn btn-circle btn-info">
+    <i class="fa fa-eraser"></i>
+  </button>
+</div>
+<div id="delete" class="mixer-ui-set mixer-ui-right">
+  <span class="mixer-ui-item">delete one</span>
+  <button class="mixer-ui-item  btn btn-circle btn-warning">
+    <i class="fa fa-ban"></i>
+  </button>
 </div>
