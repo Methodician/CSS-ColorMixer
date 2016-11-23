@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularFire2';
 //import { HttpModule } from '@angular/http';
+import { PerfectScrollbarConfigInterface, PerfectScrollbarModule } from 'angular2-perfect-scrollbar';
 
 
 import { AppComponent } from './app.component';
@@ -12,6 +13,11 @@ import { ColorCircleComponent } from './color-circle/color-circle.component';
 import { LeftUiComponent } from './left-ui/left-ui.component';
 import { RightUiComponent } from './right-ui/right-ui.component';
 import { PalettesComponent } from './palettes/palettes.component';
+
+
+const PERVECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+}
 
 @NgModule({
   declarations: [
@@ -25,7 +31,8 @@ import { PalettesComponent } from './palettes/palettes.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AngularFireModule.initializeApp(firebaseConfig, authConfig)
+    AngularFireModule.initializeApp(firebaseConfig, authConfig),
+    PerfectScrollbarModule.forRoot(PERVECT_SCROLLBAR_CONFIG)
   ],
   providers: [],
   bootstrap: [AppComponent]

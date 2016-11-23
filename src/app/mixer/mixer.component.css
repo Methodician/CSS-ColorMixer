@@ -51,17 +51,30 @@ color-circle{
     margin: auto;
 }
 
+#coreColors {
+    margin: auto;
+    background-color: #7f7f7f;
+    border-radius: 20px;
+    width: 595px;
+}
+
 #generatedColors {
     max-width: 70vw;
     margin: auto;
+    /*overflow-y: scroll;*/
+    /*overflow: hidden;*/
+    max-height: 27vh;
+    margin-top: 30px;
+    background-color: #111;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
 /*    padding: 0 70px;
     box-sizing: content-box;*/
 }
 
 #generatedCircles {
-    overflow-y: scroll;
-    max-height: 27vh;
-    margin-top: 30px;
+    
 }
 
 .fa-undo, .fa-repeat {
