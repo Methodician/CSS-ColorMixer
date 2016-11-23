@@ -8,21 +8,11 @@
   <button (click)="toggleHex()" class="mixer-ui-item  btn btn-primary">rgb/hex switch</button>
 </div>
 <div id="clearColors" class="mixer-ui-set mixer-ui-left">
-  <span class="mixer-ui-item">clear</span>
+  <span class="mixer-ui-item"></span>
   <button (click)="clearColors()" class="mixer-ui-item  btn btn-circle btn-danger">
-          <i class="fa fa-bomb"></i>
+          <i class="fa fa-trash"></i>
         </button>
 </div>
-<!--<div class="row" style="margin-top: 67px;">
-      <button (click)="toggleAvg()" class="btn" [class.btn-primary]="!averageOn" [class.btn-success]="averageOn">Mix (avg)</button>
-      <button (click)="toggleAdd()" class="btn" [class.btn-primary]="!addOn" [class.btn-success]="addOn">Combine (add)</button>
-      <button (click)="toggleMinus()" class="btn" [class.btn-primary]="!minusOn" [class.btn-success]="minusOn">Subtract (minus)</button>
-      <button (click)="resetPool()" class="btn btn-primary">Reset Pool</button>
-      <button (click)="clearColors()" class="btn btn-primary">Clear Colors</button>
-      <button (click)="toggleHex()" class="btn btn-info">Toggle {{ showHex ? 'RGB' : 'Hex' }}</button>
-    </div>-->
-
-
 <div id="mixer-area">
   <div class="row">
     <div class="row" id="colorPoolContainer">
@@ -60,14 +50,14 @@
   </div>
 </div>
 <div id="resetPool" class="mixer-ui-set mixer-ui-right">
-  <span class="mixer-ui-item">reset pool</span>
+  <span class="mixer-ui-item"></span>
   <button (click)="resetPool()" class="mixer-ui-item  btn btn-circle btn-info">
-    <i class="fa fa-eraser"></i>
+    <i class="fa fa-refresh"></i>
   </button>
 </div>
 <div id="delete" class="mixer-ui-set mixer-ui-right">
-  <span class="mixer-ui-item">delete one</span>
+  <span class="mixer-ui-item"></span>
   <button class="mixer-ui-item  btn btn-circle btn-warning">
-    <i class="fa fa-ban"></i>
+    <i class="fa fa-minus-square"></i>
   </button>
 </div>

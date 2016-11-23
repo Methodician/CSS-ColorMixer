@@ -53,7 +53,7 @@ color-circle{
 
 #coreColors {
     margin: auto;
-    background-color: #7f7f7f;
+    /*background-color: #7f7f7f;*/
     border-radius: 20px;
     width: 595px;
 }
@@ -66,15 +66,11 @@ color-circle{
     max-height: 27vh;
     margin-top: 30px;
     background-color: #111;
-    border-radius: 20px;
+    border-radius: 15px;
     position: relative;
     display: flex;
 /*    padding: 0 70px;
     box-sizing: content-box;*/
-}
-
-#generatedCircles {
-    
 }
 
 .fa-undo, .fa-repeat {
@@ -124,6 +120,17 @@ color-circle{
 
 #undoRow{
     margin: 25px 0 -10px 0;
+}
+
+/* Bootstrap btn color changes */
+.btn-danger {
+    background: #b41010;
+    border-color: #b41010;
+} 
+
+.btn-warning {
+    background: #ffe040;
+    border-color: #ffe040;
 }
 
 /* Left Side Ui*/
