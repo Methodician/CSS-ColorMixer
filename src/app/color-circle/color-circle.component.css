@@ -5,6 +5,13 @@
     width: 100px;
 }
 
+/*@media only screen and (min-device-width: 412px) {
+    .colorCircle{
+        height: 65px;
+        width: 65px;
+    }
+}*/
+
 @media screen and ( max-width : 568px ) {
     label {
         font-size: .75em;
