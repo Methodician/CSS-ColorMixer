@@ -147,6 +147,42 @@ color-circle{
     margin-top: 15px;
 }
 
+/* ============== MEDIA QUERIES: TABLET CSS ============== */
+/*@media screen and ( max-width : 991px ) {
+    
+}*/
+
+/* ============== MEDIA QUERIES: TABLET CSS ============== */
+@media only screen and (min-device-width: 481px) {
+    i.fa.fa-undo, i.fa.fa-repeat {
+        font-size: 2em;
+        padding: 1em .2em;
+    }
+
+    #coreColors {
+        max-width: 55vw;
+    }
+
+    #mixerSettings{
+        top: 92px;
+    }
+    #rgbHex {
+        top: 380px;
+    }
+    #clearColors{
+        top: 664px;
+    }
+    #resetPool{
+        top: 92px;
+    }
+    #delete{
+        top: 664px;
+    }
+    .side-button {
+        margin-top: 15px;
+    }
+}
+
 /* ============== MEDIA QUERIES: iPhone5+ Portrait ============== */
 @media screen and ( max-width : 568px ) {
     
@@ -213,13 +249,13 @@ color-circle{
         top: 218px;
     }
     #clearColors{
-        top: 375px;
+        top: 376px;
     }
     #resetPool{
         top: 60px;
     }
     #delete{
-        top: 375px;
+        top: 376px;
     }
     .side-button {
         margin-top: 15px;
