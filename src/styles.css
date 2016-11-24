@@ -8,7 +8,36 @@ body {
   max-width: 75vw;
 }*/
 
+/* Bootstrap btn color changes */
+.btn-danger {
+    background: #b41010;
+    border-color: #b41010;
+} 
 
+.btn-warning {
+    background: #FFC000;
+    border-color: #FFC000;
+}
+
+.btn-info {
+    background: #777;
+    border-color: #777;
+}
+
+.btn-info:active {
+    background: #444;
+    border-color: #444;
+}
+
+.btn-primary {
+    background: #3870C8;
+    border-color: #3870C8;
+}
+
+.btn-success {
+    background: #89BA1E;
+    border-color: #89BA1E;
+}
 
 /*BOOTSTRAP SNIPPETS:*/
 /*Circle Buttons*/
@@ -51,3 +80,4 @@ body {
   line-height: 2.00;
   border-radius: 70px;
 }
+

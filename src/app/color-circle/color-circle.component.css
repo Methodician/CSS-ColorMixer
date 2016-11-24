@@ -2,3 +2,9 @@
 .colorCircle {
     border-radius: 5%;
 }
+
+@media screen and ( max-width : 568px ) {
+    label {
+        font-size: .75em;
+    }
+}

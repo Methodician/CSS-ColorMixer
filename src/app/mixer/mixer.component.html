@@ -1,29 +1,25 @@
 <div id="mixerSettings" class="mixer-ui-set mixer-ui-left">
-  <span class="mixer-ui-item">average</span>
-  <button (click)="toggleAvg()" class="mixer-ui-item  btn btn-circle" [class.btn-success]="averageOn">
-          <i *ngIf="averageOn" class="fa fa-check"></i>
-        </button>
-  <button (click)="toggleAdd()" class="mixer-ui-item  btn btn-default" [class.btn-success]="addOn">add</button>
-  <button (click)="toggleMinus()" class="mixer-ui-item  btn btn-default" [class.btn-success]="minusOn">subtract</button>
-  <button (click)="toggleHex()" class="mixer-ui-item  btn btn-primary">rgb/hex switch</button>
-</div>
-<div id="clearColors" class="mixer-ui-set mixer-ui-left">
   <span class="mixer-ui-item"></span>
-  <button (click)="clearColors()" class="mixer-ui-item  btn btn-circle btn-danger">
-          <i class="fa fa-trash"></i>
+  <button (click)="toggleAvg()" class="mixer-ui-item  btn btn-circle" [class.btn-success]="averageOn">
+          AVG
         </button>
+  <button (click)="toggleAdd()" class="mixer-ui-item  btn btn-default btn-circle" [class.btn-success]="addOn"><i class="fa fa-plus"></i></button>
+  <button (click)="toggleMinus()" class="mixer-ui-item  btn btn-default btn-circle" [class.btn-success]="minusOn"><i class="fa fa-minus"></i></button>
+</div>
+<div class="mixer-ui-set mixer-ui-left" id="rgbHex">
+  <button (click)="toggleHex()" class="mixer-ui-item  btn btn-primary btn-circle">RGB</button>  
 </div>
 <div id="mixer-area">
   <div class="row">
     <div class="row" id="colorPoolContainer">
       <div class="row" id="undoRow">
-        <div class="row">
+        <!--<div class="row">
           <label style="margin-right: 130px;">{{ historyIndex == 0 ? '' : historyIndex }}</label>
           <label style="margin-left: 130px;">{{ colorPoolHistory.length == 1 ? '' : colorPoolHistory.length - 1 }}</label>
-        </div>
+        </div>-->
         <div class="row">
-          <i (click)="undo()" style="margin-right: 130px;" class="fa fa-undo"></i>
-          <i (click)="redo()" style="margin-left: 130px;" class="fa fa-repeat"></i>
+          <i (click)="undo()" class="fa fa-undo"></i>
+          <i (click)="redo()" class="fa fa-repeat"></i>
         </div>
       </div>
       <div id="colorPool">
@@ -40,12 +36,12 @@
       <!--{{ showHex ? poolColor.hex : poolColor.rgb.slice(3) }}-->
     </div>
   </div>
-  <div class="row colorPicksContainer">
-    <div class="row" id="coreColors">
+  <div class="colorPicksContainer">
+    <div id="coreColors">
       <color-circle *ngFor="let color of coreColors" [color]="color" [sizeMultiplier]="1" [id]="'core-' + color.hex" (clicked)="pickColor($event)"></color-circle>
     </div>
     <perfect-scrollbar id="generatedColors">
-      <color-circle *ngFor="let color of colors | async" [color]="color" [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
+      <color-circle *ngFor="let color of colors | async | reverse" [color]="color" [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
     </perfect-scrollbar>
   </div>
 </div>
@@ -54,6 +50,12 @@
   <button (click)="resetPool()" class="mixer-ui-item  btn btn-circle btn-info">
     <i class="fa fa-refresh"></i>
   </button>
+</div>
+<div id="clearColors" class="mixer-ui-set mixer-ui-left">
+  <span class="mixer-ui-item"></span>
+  <button (click)="clearColors()" class="mixer-ui-item  btn btn-circle btn-danger">
+          <i class="fa fa-trash"></i>
+        </button>
 </div>
 <div id="delete" class="mixer-ui-set mixer-ui-right">
   <span class="mixer-ui-item"></span>

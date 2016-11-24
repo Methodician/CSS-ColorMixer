@@ -21,7 +21,7 @@ color-circle{
 .mixer-ui-set {
     position: absolute;
     /*border: 1px solid #008080;*/
-    background-color: #384048;
+    background-color: #444;
     padding: 15px;
 }
 .mixer-ui-set > button{
@@ -32,12 +32,12 @@ color-circle{
 }
 .mixer-ui-left {
   left: 0;
-  border-radius: 0 10% 10% 0;
+  border-radius: 0 10px 10px 0;
 }
 
 .mixer-ui-right {
   right: 0;
-  border-radius: 10% 0 0 10%;
+  border-radius: 10px 0 0 10px;
 }
 
 .colorPicksContainer{
@@ -55,22 +55,19 @@ color-circle{
     margin: auto;
     /*background-color: #7f7f7f;*/
     border-radius: 20px;
+    max-width: 75vw;
     width: 595px;
 }
 
 #generatedColors {
     max-width: 70vw;
     margin: auto;
-    /*overflow-y: scroll;*/
-    /*overflow: hidden;*/
     max-height: 27vh;
     margin-top: 30px;
     background-color: #111;
     border-radius: 15px;
     position: relative;
     display: flex;
-/*    padding: 0 70px;
-    box-sizing: content-box;*/
 }
 
 .fa-undo, .fa-repeat {
@@ -122,26 +119,25 @@ color-circle{
     margin: 25px 0 -10px 0;
 }
 
-/* Bootstrap btn color changes */
-.btn-danger {
-    background: #b41010;
-    border-color: #b41010;
-} 
-
-.btn-warning {
-    background: #ffe040;
-    border-color: #ffe040;
+#undoRow > .row > .fa-undo{
+    margin-right: 130px;
+}
+#undoRow > .row > .fa-repeat{
+    margin-left: 130px;
 }
 
-/* Left Side Ui*/
+/* Mixer Side UI Buttons*/
 #mixerSettings{
-    top: 75px;
+    top: 73px;
+}
+#rgbHex {
+    top: 373px;
 }
 #clearColors{
     top: 600px;
 }
 #resetPool{
-    top: 155px;
+    top: 135px;
 }
 #delete{
     top: 600px;
@@ -150,3 +146,85 @@ color-circle{
     margin-top: 15px;
 }
 
+/* ============== MEDIA QUERIES ===================== */
+
+
+
+/* ============== MEDIA QUERIES: iPhone5+ Portrait ============== */
+@media screen and ( max-width : 568px ) {
+    
+    i.fa.fa-undo, i.fa.fa-repeat {
+        font-size: 1.5em;
+        padding: 1em .2em;
+    }
+
+    #undoRow {
+        margin-top: 15px;
+    }
+
+    #undoRow > .row > .fa-undo{
+        margin-right: 80px;
+    }
+    #undoRow > .row > .fa-repeat{
+        margin-left: 80px;
+    }
+
+    #colorPoolContainer {
+        padding: 0px 0px 0px;
+    }
+
+    color-circle {
+        margin: 6px;
+    }
+
+    #generatedColors { 
+        max-width: 65vw;   
+        max-height: 31vh;
+        margin-top: 15px;
+        border-radius: 10px;
+    }
+    .mixer-ui-set {
+        padding: .7em;
+    }
+    .mixer-ui-set > button{
+        margin: .7em auto;
+    }
+    .mixer-ui-set > .btn-circle {
+        width: 30px;
+        height: 30px;
+    }
+    .btn-circle {
+        font-size: .75em;
+    }
+    .mixer-ui-left {
+        border-radius: 0 .5em .5em 0;
+    }
+
+    .mixer-ui-right {
+        border-radius: .5em 0 0 .5em;
+    }
+    #colorPool{
+        height: 130px;
+        width: 60vw;
+        margin: 0 auto;
+        border-radius: 25px;
+    }
+    #mixerSettings{
+        top: 70px;
+    }
+    #rgbHex {
+        top: 250px;
+    }
+    #clearColors{
+        top: 380px;
+    }
+    #resetPool{
+        top: 70px;
+    }
+    #delete{
+        top: 380px;
+    }
+    .side-button {
+        margin-top: 15px;
+    }
+}

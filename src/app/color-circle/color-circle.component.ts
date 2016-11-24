@@ -15,6 +15,9 @@ export class ColorCircleComponent implements OnInit {
 
   constructor() { }
   ngOnInit() {
+    let mediaQueryPhone = window.matchMedia( "(max-width: 568px)" );
+    if(mediaQueryPhone.matches)
+      this.baseSize = 50;
   }
 
   click() {

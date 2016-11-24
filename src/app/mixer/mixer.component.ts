@@ -11,6 +11,8 @@ import { RgbColor, IrgbColor } from '../models/rgb-color';
 })
 export class MixerComponent implements OnInit {
 
+  defaultPool: IrgbColor = new RgbColor(68, 68, 68);
+
   averageOn = true;
   addOn = false;
   minusOn = false;
@@ -31,7 +33,7 @@ export class MixerComponent implements OnInit {
   black: IrgbColor = new RgbColor(0, 0, 0);
 
 
-  poolColor: IrgbColor = new RgbColor(127, 127, 127);
+  poolColor: IrgbColor = this.defaultPool;
   lastColor: IrgbColor;
 
   //  draggingColor: IrgbColor = null;
@@ -187,9 +189,8 @@ export class MixerComponent implements OnInit {
   }
 
   resetPool() {
-    let freshPool = new RgbColor(127, 127, 127);
-    this.poolColor = freshPool;
-    this.setElementColor('colorPoolRight', freshPool);
+    this.poolColor = this.defaultPool;
+    this.setElementColor('colorPoolRight', this.defaultPool);
     this.poolSet = false;
   }
 

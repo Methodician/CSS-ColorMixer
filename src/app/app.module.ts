@@ -13,6 +13,7 @@ import { ColorCircleComponent } from './color-circle/color-circle.component';
 import { LeftUiComponent } from './left-ui/left-ui.component';
 import { RightUiComponent } from './right-ui/right-ui.component';
 import { PalettesComponent } from './palettes/palettes.component';
+import { ReversePipe } from './reverse.pipe';
 
 
 const PERVECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -26,7 +27,8 @@ const PERVECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ColorCircleComponent,
     LeftUiComponent,
     RightUiComponent,
-    PalettesComponent
+    PalettesComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
