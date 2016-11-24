@@ -7,9 +7,8 @@ import { AngularFire, FirebaseListObservable } from 'angularFire2';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  items: FirebaseListObservable<any[]>;
+
   constructor(private af: AngularFire) {
-    this.items = af.database.list('/items');
   }
 
   loginGoogle() {

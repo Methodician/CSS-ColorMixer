@@ -7,6 +7,5 @@
 </div>-->
 
 
-<label>{{ color.hex }}</label>
-<div class="colorCircle" [style.background-color]="color.hex" [style.height.px]="baseSize * sizeMultiplier" [style.width.px]="baseSize * sizeMultiplier"
-    (click)="click()"></div>
+<label>{{ showHex ? color.hex : color.rgb.slice(3) }}</label>
+<div class="colorCircle" [style.background-color]="color.hex" (click)="click()"></div>

@@ -8,16 +8,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ColorCircleComponent implements OnInit {
   @Input() color = new RgbColor(0, 0, 0);
-  @Input() sizeMultiplier: number = 1;
+  @Input() showHex = true;
   @Output() clicked = new EventEmitter();
-
-  baseSize: number = 100;
 
   constructor() { }
   ngOnInit() {
-    let mediaQueryPhone = window.matchMedia( "(max-width: 568px)" );
-    if(mediaQueryPhone.matches)
-      this.baseSize = 50;
+    /*    let mediaQueryPhone = window.matchMedia("(max-width: 568px)");
+        if (mediaQueryPhone.matches)
+          this.baseSize = 50;*/
   }
 
   click() {
