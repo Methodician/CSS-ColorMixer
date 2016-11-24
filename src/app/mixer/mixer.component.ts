@@ -163,18 +163,24 @@ export class MixerComponent implements OnInit {
   toggleAvg() {
     //this.method = 'Average';
     this.averageOn = !this.averageOn;
+    if (!this.averageOn && !this.addOn && !this.minusOn)
+      this.addOn = true;
   }
   toggleAdd() {
     //this.method = 'Add';
     this.addOn = !this.addOn;
     if (this.addOn)
       this.minusOn = false;
+    if (!this.addOn && !this.minusOn && !this.averageOn)
+      this.averageOn = true;
   }
   toggleMinus() {
     //this.method = 'Minus';
     this.minusOn = !this.minusOn;
     if (this.minusOn)
       this.addOn = false;
+    if (!this.addOn && !this.minusOn && !this.averageOn)
+      this.averageOn = true;
   }
 
   saveColor(side: string) {
