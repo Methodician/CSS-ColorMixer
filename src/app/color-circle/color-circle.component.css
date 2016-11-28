@@ -3,11 +3,22 @@
     border-radius: 5%;
     height: 100px;
     width: 100px;
+    text-align: left;
+}
+
+i{
+    position: relative;
+    top: 10px;
+    left: 12px;
 }
 
 @media screen and ( max-width : 568px ) {
     label {
         font-size: .75em;
+    }
+    i {
+        top: 4px;
+        left: 6px;
     }
     .colorCircle{
         height: 50px;

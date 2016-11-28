@@ -9,6 +9,12 @@
 <div class="mixer-ui-set mixer-ui-left" id="rgbHex">
   <button (click)="toggleHex()" class="mixer-ui-item  btn btn-primary btn-circle">{{ showHex ? 'RGB' : 'HEX' }}</button>
 </div>
+<div id="clearColors" class="mixer-ui-set mixer-ui-left">
+  <span class="mixer-ui-item"></span>
+  <button (click)="clearColors()" class="mixer-ui-item  btn btn-circle btn-danger">
+          <i class="fa fa-trash"></i>
+        </button>
+</div>
 <div id="mixer-area">
   <div class="row">
     <div class="row" id="colorPoolContainer">
@@ -38,10 +44,10 @@
   </div>
   <div class="colorPicksContainer">
     <div id="coreColors">
-      <color-circle *ngFor="let color of coreColors" [showHex]="showHex" [color]="color" [id]="'core-' + color.hex" (clicked)="pickColor($event)"></color-circle>
+      <color-circle *ngFor="let color of coreColors" [deleteOn]="deleteOn" [deleteable]="false" [showHex]="showHex" [color]="color" [id]="'core-' + color.hex" (clicked)="pickColor($event)"></color-circle>
     </div>
     <perfect-scrollbar id="generatedColors">
-      <color-circle *ngFor="let color of colors | async | reverse" [showHex]="showHex" [color]="color" [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
+      <color-circle *ngFor="let color of colors | async | reverse" [deleteOn]="deleteOn" [showHex]="showHex" [color]="color" [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
     </perfect-scrollbar>
   </div>
 </div>
@@ -51,15 +57,9 @@
     <i class="fa fa-refresh"></i>
   </button>
 </div>
-<div id="clearColors" class="mixer-ui-set mixer-ui-left">
-  <span class="mixer-ui-item"></span>
-  <button (click)="clearColors()" class="mixer-ui-item  btn btn-circle btn-danger">
-          <i class="fa fa-trash"></i>
-        </button>
-</div>
 <div id="delete" class="mixer-ui-set mixer-ui-right">
   <span class="mixer-ui-item"></span>
-  <button class="mixer-ui-item  btn btn-circle btn-warning">
+  <button (click)="toggleDelete()" class="mixer-ui-item  btn btn-circle btn-warning">
     <i class="fa fa-minus-square"></i>
   </button>
 </div>

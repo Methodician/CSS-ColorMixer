@@ -8,4 +8,6 @@
 
 
 <label>{{ showHex ? color.hex : color.rgb.slice(3) }}</label>
-<div class="colorCircle" [style.background-color]="color.hex" (click)="click()"></div>
+<div class="colorCircle" [style.background-color]="color.hex" (click)="click()">
+    <i *ngIf="deleteOn && deleteable" class="fa fa-minus-square fa-2x"></i>
+</div>

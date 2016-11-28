@@ -9,6 +9,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ColorCircleComponent implements OnInit {
   @Input() color = new RgbColor(0, 0, 0);
   @Input() showHex = true;
+  @Input() deleteOn = false;
+  @Input() deleteable = true;
   @Output() clicked = new EventEmitter();
 
   constructor() { }
@@ -19,6 +21,9 @@ export class ColorCircleComponent implements OnInit {
   }
 
   click() {
+    if(!this.deleteable && this.deleteOn){
+      return;
+    }
     this.clicked.emit(this.color);
   }
 
