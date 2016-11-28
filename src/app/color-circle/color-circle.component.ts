@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs/Subject';
 import { StateService } from './../state.service';
 import { RgbColor } from '../models/rgb-color';
-import { Component, OnInit, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -22,7 +22,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 
-export class ColorCircleComponent implements OnInit {
+export class ColorCircleComponent implements OnInit, OnDestroy {
   @Input() color = new RgbColor(0, 0, 0);
   @Input() showHex = true;
   //@Input() deleteOn = false;
@@ -72,6 +72,10 @@ export class ColorCircleComponent implements OnInit {
       return;
     }
     this.clicked.emit(this.color);
+  }
+
+  ngOnDestroy() {
+    this.stateSub.unsubscribe();
   }
 
 }

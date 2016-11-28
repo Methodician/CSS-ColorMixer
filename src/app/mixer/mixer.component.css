@@ -73,7 +73,7 @@ color-circle{
 
 .fa-undo, .fa-repeat {
     font-size: 2em;
-    padding: 0px 160px 30px;
+    padding: 0px 15vw 30px;
 }
 
 #colorPoolContainer{
@@ -117,7 +117,7 @@ color-circle{
 }
 
 #undoRow{
-    margin: 25px 0 -10px 0;
+    margin: 45px 0 -10px 0;
 }
 
 #undoRow > .row > .fa-undo{
@@ -156,7 +156,7 @@ color-circle{
     
     i.fa.fa-undo, i.fa.fa-repeat {
         font-size: 1.5em;
-        padding: 1em .2em;
+        padding: 1em 15vw;
     }
 
     #undoRow {

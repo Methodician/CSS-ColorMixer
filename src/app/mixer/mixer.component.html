@@ -16,31 +16,29 @@
         </button>
 </div>
 <div id="mixer-area">
-  <div class="row">
-    <div class="row" id="colorPoolContainer">
-      <div class="row" id="undoRow">
-        <!--<div class="row">
+  <div id="colorPoolContainer">
+    <div class="row" id="undoRow">
+      <!--<div class="row">
           <label style="margin-right: 130px;">{{ historyIndex == 0 ? '' : historyIndex }}</label>
           <label style="margin-left: 130px;">{{ colorPoolHistory.length == 1 ? '' : colorPoolHistory.length - 1 }}</label>
         </div>-->
-        <div class="row">
-          <i (click)="undo()" class="fa fa-undo"></i>
-          <i (click)="redo()" class="fa fa-repeat"></i>
-        </div>
-      </div>
-      <div id="colorPool">
-        <!--makeDroppable (dragEnter)="enterPool($event)" (dragLeave)="leavePool($event)"-->
-        <div id="colorPoolLeft" (click)="saveColor('left')">
-          <span *ngIf="lastColor" class="colorLabel">{{ showHex ? lastColor?.hex : lastColor?.rgb.slice(3) }}</span>
-        </div>
-        <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
-        <div id="colorPoolRight" (click)="saveColor('right')">
-          <span class="colorLabel">{{ showHex ? poolColor?.hex : poolColor?.rgb.slice(3) }}</span>
-        </div>
-        <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
-      </div>
-      <!--{{ showHex ? poolColor.hex : poolColor.rgb.slice(3) }}-->
+      <!--<div class="row">-->
+      <i (click)="undo()" class="fa fa-undo"></i>
+      <i (click)="redo()" class="fa fa-repeat"></i>
+      <!--</div>-->
     </div>
+    <div id="colorPool">
+      <!--makeDroppable (dragEnter)="enterPool($event)" (dragLeave)="leavePool($event)"-->
+      <div id="colorPoolLeft" (click)="saveColor('left')">
+        <span *ngIf="lastColor" class="colorLabel">{{ showHex ? lastColor?.hex : lastColor?.rgb.slice(3) }}</span>
+      </div>
+      <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
+      <div id="colorPoolRight" (click)="saveColor('right')">
+        <span class="colorLabel">{{ showHex ? poolColor?.hex : poolColor?.rgb.slice(3) }}</span>
+      </div>
+      <!-- TODO: [class.pointerEventsDisabled]="draggingColor"-->
+    </div>
+    <!--{{ showHex ? poolColor.hex : poolColor.rgb.slice(3) }}-->
   </div>
   <div class="colorPicksContainer">
     <div id="coreColors">
