@@ -1,3 +1,4 @@
+import { StateService } from './../state.service';
 import { Component, OnInit } from '@angular/core';
 
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularFire2';
@@ -45,7 +46,10 @@ export class MixerComponent implements OnInit {
   colors: FirebaseListObservable<IrgbColor[]>;
 
 
-  constructor(public db: AngularFireDatabase) { }
+  constructor(
+    public db: AngularFireDatabase,
+    public stateSvc: StateService
+  ) { }
 
   ngOnInit() {
     this.colors = this.db.list('colors');
@@ -54,14 +58,14 @@ export class MixerComponent implements OnInit {
   }
 
   pickColor(color: IrgbColor) {
-    if(this.deleteOn){
+    if (this.deleteOn) {
       this.deleteColor(color);
     }
-    else{
+    else {
       this.selectColor(color);
     }
   }
-  selectColor(color: IrgbColor){
+  selectColor(color: IrgbColor) {
     if (!this.poolSet) {
       /*if (this.draggingColor) {
         this.lastColor = this.colorPoolHistory[this.colorPoolHistory.length - 2];
@@ -93,7 +97,7 @@ export class MixerComponent implements OnInit {
     }
     this.colorPoolHistory.push(this.poolColor);
   }
-  deleteColor(color: IrgbColor){
+  deleteColor(color: IrgbColor) {
     this.colors.remove(color.$key);
   }
 
@@ -195,8 +199,9 @@ export class MixerComponent implements OnInit {
       this.averageOn = true;
   }
 
-  toggleDelete(){
+  toggleDelete() {
     this.deleteOn = !this.deleteOn;
+    this.stateSvc.setDeleteState(this.deleteOn);
   }
 
   saveColor(side: string) {

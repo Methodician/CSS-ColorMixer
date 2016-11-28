@@ -1,3 +1,4 @@
+import { StateService } from './state.service';
 import { firebaseConfig, authConfig } from './../assets/firebase.config';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -32,7 +33,7 @@ const PERVECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AngularFireModule.initializeApp(firebaseConfig, authConfig),
     PerfectScrollbarModule.forRoot(PERVECT_SCROLLBAR_CONFIG)
   ],
-  providers: [],
+  providers: [StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
