@@ -90,8 +90,9 @@ export class MixerComponent implements OnInit {
         newColor = this.addColors(this.poolColor, color);
       else if (this.minusOn)
         newColor = this.subtractColors(this.poolColor, color);
+      this.historyIndex = this.colorPoolHistory.length;
       this.setElementColor('colorPoolRight', newColor);
-      this.lastColor = this.colorPoolHistory[this.colorPoolHistory.length - 1]
+      this.lastColor = this.colorPoolHistory[this.historyIndex - 1]
       this.setElementColor('colorPoolLeft', this.lastColor);
       this.poolColor = newColor;
     }

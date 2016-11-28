@@ -21,24 +21,6 @@ import { Subscription } from 'rxjs/Subscription';
   ]
 })
 
-/*
-  animations: [
-    trigger('jiggleState', [
-      state('sitting', style({ transform: 'rotate(0deg)' })),
-      state('left', style({ transform: 'rotate(-7deg)' })),
-      state('rigth', style({ transform: 'rotate(7deg)' }))
-      
-    ])
-transition('sitting => left', [
-        animate(500, style({ transform: 'rotate(-7deg)' }))
-      ]),
-      transition('right => left', 
-        animate(500, style({ transform: 'rotate(-7deg)' }))
-      ),
-      transition('left => right', [
-        animate(500, style({ transform: 'rotate(7deg)' }))
-      ])
-*/
 
 export class ColorCircleComponent implements OnInit {
   @Input() color = new RgbColor(0, 0, 0);

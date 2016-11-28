@@ -63,7 +63,7 @@ color-circle{
 #generatedColors {
     max-width: 70vw;
     margin: auto;
-    max-height: 27vh;
+    max-height: calc(100vh - 530px);
     margin-top: 30px;
     background-color: #111;
     border-radius: 15px;
@@ -180,7 +180,7 @@ color-circle{
 
     #generatedColors { 
         max-width: 65vw;   
-        max-height: 31vh;
+        max-height: calc(100vh - 320px);
         margin-top: 15px;
         border-radius: 10px;
     }
