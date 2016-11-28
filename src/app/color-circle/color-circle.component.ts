@@ -10,20 +10,35 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./color-circle.component.css'],
   animations: [
     trigger('jiggleState', [
-      state('sitting', style({
-        transform: 'rotate(0deg)'
-      })),
-      transition('sitting => left', [
+      state('sitting', style({ transform: 'rotate(0deg)' })),
+      state('left', style({ transform: 'rotate(-2deg)' })),
+      state('right', style({ transform: 'rotate(2deg)' })),
+      transition('sitting => left', animate('250ms ease-in')),
+      transition('right => left', animate('250ms ease-in')),
+      transition('left => right', animate('250ms ease-in')),
+      transition('left => sitting', animate('100ms ease-in'))
+    ])
+  ]
+})
+
+/*
+  animations: [
+    trigger('jiggleState', [
+      state('sitting', style({ transform: 'rotate(0deg)' })),
+      state('left', style({ transform: 'rotate(-7deg)' })),
+      state('rigth', style({ transform: 'rotate(7deg)' }))
+      
+    ])
+transition('sitting => left', [
         animate(500, style({ transform: 'rotate(-7deg)' }))
       ]),
-      transition('right => left', [
+      transition('right => left', 
         animate(500, style({ transform: 'rotate(-7deg)' }))
-      ]),
+      ),
       transition('left => right', [
         animate(500, style({ transform: 'rotate(7deg)' }))
       ])
-    ])
-})
+*/
 
 export class ColorCircleComponent implements OnInit {
   @Input() color = new RgbColor(0, 0, 0);
@@ -34,6 +49,7 @@ export class ColorCircleComponent implements OnInit {
 
   deleteOn = false;
   jiggleState = 'sitting';
+  jiggling = false;
 
   stateSub: Subscription;
 
@@ -42,22 +58,29 @@ export class ColorCircleComponent implements OnInit {
     this.stateSub = this.stateSvc.deleteState
       .subscribe(deleteOn => {
         this.deleteOn = deleteOn;
-        if (deleteOn)
+        if (deleteOn && this.deleteable)
           this.jiggle();
       })
 
   }
 
   jiggle() {
-
-    setTimeout(() => {
+    if (!this.jiggling) {
       this.jiggleState = 'left';
+      this.jiggling = true;
+    }
+    setTimeout(() => {
+      this.jiggleState = 'right';
       setTimeout(() => {
-        this.jiggleState = 'right';
+        this.jiggleState = 'left';
         if (this.deleteOn)
           this.jiggle();
-      }, 1000)
-    }, 1000);
+        else {
+          this.jiggleState = 'sitting';
+          this.jiggling = false;
+        }
+      }, 250)
+    }, 250);
 
   }
 
