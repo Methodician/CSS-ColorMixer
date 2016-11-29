@@ -1,4 +1,4 @@
-import { IrgbColor, RgbColor } from '../models/rgb-color';
+import { RgbColor } from '../models/rgb-color';
 import { Subject } from 'rxjs/Subject';
 import { StateService } from './../state.service';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs/Subscription';
     trigger('growIn', [
       transition('void => grow', [
         style({ width: '0' }),
-        animate(1000, style({ width: '*' }))
+        animate(250, style({ width: '*' }))
       ])
     ])
 
@@ -30,7 +30,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 
 export class ColorCircleComponent implements OnInit, OnDestroy {
-  @Input() color: IrgbColor = new RgbColor(0, 0, 0);
+  @Input() color: any = new RgbColor(0, 0, 0);
   @Input() showHex = true;
   //@Input() deleteOn = false;
   @Input() deleteable = true;

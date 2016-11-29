@@ -90,21 +90,20 @@ color-circle{
     overflow: hidden;
     /*border: white solid 9px;*/
 }
-#colorPoolLeft{
+/*Lots of duplicated code here...*/
+.poolColor{
     height: 100%;
     width: 50%;
+    display: inline-block
+}
+.leftColor{
     float: left;
 }
-#colorPoolRight{
-    height: 100%;
-    width: 50%;
+.rightColor{
     float: right;
 }
-#colorPoolNext{
-    height: 100%;
-    width: 50%;
-    float: right;
-}
+
+
 .colorLabel {
     background: #333;
     padding: 2%;

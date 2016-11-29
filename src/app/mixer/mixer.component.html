@@ -22,13 +22,16 @@
       <i (click)="redo()" class="fa fa-repeat"></i>
     </div>
     <div id="colorPool">
-      <div id="colorPoolLeft" (click)="saveColor('left')" [@shiftState]="shiftState">
-        <span *ngIf="lastColor" class="colorLabel">{{ showHex ? lastColor?.hex : lastColor?.rgb.slice(3) }}</span>
-      </div>
-      <div id="colorPoolRight" (click)="saveColor('right')" [@shiftState]="shiftState">
+      <div id="colorPoolLast" class="leftColor poolColor" [@lastShiftState]="shiftState">
         <span class="colorLabel">{{ showHex ? poolColor?.hex : poolColor?.rgb.slice(3) }}</span>
       </div>
-      <div id="colorPoolNext" [@nextShiftState]="shiftState">
+      <div id="colorPoolLeft" class="leftColor poolColor" (click)="saveColor('left')" [@leftShiftState]="shiftState">
+        <span *ngIf="lastColor" class="colorLabel">{{ showHex ? lastColor?.hex : lastColor?.rgb.slice(3) }}</span>
+      </div>
+      <div id="colorPoolNext" class="rightColor poolColor" [@nextShiftState]="shiftState">
+        <span class="colorLabel">{{ showHex ? poolColor?.hex : poolColor?.rgb.slice(3) }}</span>
+      </div>
+      <div id="colorPoolRight" class="rightColor poolColor" (click)="saveColor('right')" [@rightShiftState]="shiftState">
         <span class="colorLabel">{{ showHex ? poolColor?.hex : poolColor?.rgb.slice(3) }}</span>
       </div>
     </div>
@@ -37,7 +40,7 @@
     <div id="coreColors">
       <color-circle *ngFor="let color of coreColors" [deleteable]="false" [showHex]="showHex" [color]="color" [id]="'core-' + color.hex"
         (clicked)="pickColor($event)"></color-circle>
-      <color-circle *ngIf="newestColor" [deleteable]="false" [showHex]="showHex" [color]="newestColor"></color-circle>
+      <!--<color-circle *ngIf="newestColor" [deleteable]="false" [showHex]="showHex" [color]="newestColor"></color-circle>-->
     </div>
     <perfect-scrollbar id="generatedColors">
       <color-circle *ngFor="let color of colors | async | reverse" [showHex]="showHex" [color]="color" [newestColorKey]="newestColor?.$key"

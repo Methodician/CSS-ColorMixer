@@ -10,10 +10,24 @@ import { RgbColor, IrgbColor } from './../models/rgb-color';
   templateUrl: './mixer.component.html',
   styleUrls: ['./mixer.component.css'],
   animations: [
-    trigger('shiftState', [
+    trigger('lastShiftState', [
       state('shifting', style({ transform: 'translateX(-100%)' })),
-      state('sitting', style({ transform: 'translateX(0)' })),
-      transition('sitting => shifting', animate('200ms ease-out'))
+      state('sitting', style({ transform: 'translateX(-100%)' })),
+      transition('sitting => shifting', animate('200ms ease-in'))
+    ]),
+    trigger('leftShiftState', [
+      state('shifting', style({ transform: 'translateX(-200%)' })),
+      state('unshifting', style({ transform: 'translateX(0)' })),
+      state('sitting', style({ transform: 'translateX(-100%)' })),
+      transition('sitting => shifting', animate('200ms ease-out')),
+      transition('sitting => unshifting', animate('200ms ease-in'))
+    ]),
+    trigger('rightShiftState', [
+      state('shifting', style({ transform: 'translateX(0) translateY(-100%)' })),
+      state('unshifting', style({ transform: 'translateX(200%) translateY(-100%)' })),
+      state('sitting', style({ transform: 'translateX(100%) translateY(-100%)' })),
+      transition('sitting => shifting', animate('200ms ease-out')),
+      transition('sitting => unshifting', animate('200ms ease-in'))
     ]),
     trigger('nextShiftState', [
       state('shifting', style({ transform: 'translateX(0) translateY(-100%)' })),
@@ -83,20 +97,29 @@ export class MixerComponent implements OnInit {
       this.selectColor(color);
     }
   }
+
   selectColor(color: IrgbColor) {
     if (!this.poolSet) {
-      /*if (this.draggingColor) {
-        this.lastColor = this.colorPoolHistory[this.colorPoolHistory.length - 2];
-        this.setElementColor('colorPoolLeft', this.lastColor);
-      }*/
       if (this.undoing || this.redoing) {
         if (this.historyIndex == 0)
           this.lastColor = this.colorPoolHistory[this.colorPoolHistory.length - 1];
         else this.lastColor = this.colorPoolHistory[this.historyIndex - 1];
-
-        this.setElementColor('colorPoolLeft', this.lastColor);
+        if (this.redoing) {
+          this.setElementColor('colorPoolNext', color);
+          this.shiftState = 'shifting';
+        }
+        if (this.undoing) {
+          this.setElementColor('colorPoolLast', this.lastColor);
+          this.shiftState = 'unshifting';
+        }
+        setTimeout(() => {
+          this.setElementColor('colorPoolLeft', this.lastColor);
+          this.setElementColor('colorPoolRight', color);
+          this.shiftState = 'sitting'
+        }, 200);
+      } else {
+        this.setElementColor('colorPoolRight', color);
       }
-      this.setElementColor('colorPoolRight', color);
       this.poolColor = color;
       this.poolSet = true;
     }
