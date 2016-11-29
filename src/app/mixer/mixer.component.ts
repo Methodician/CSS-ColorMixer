@@ -1,5 +1,5 @@
 import { StateService } from './../state.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularFire2';
 
@@ -8,7 +8,19 @@ import { RgbColor, IrgbColor } from '../models/rgb-color';
 @Component({
   selector: 'mixer',
   templateUrl: './mixer.component.html',
-  styleUrls: ['./mixer.component.css']
+  styleUrls: ['./mixer.component.css'],
+  animations: [
+    trigger('shiftState', [
+      state('shifting', style({ transform: 'translateX(-100%)' })),
+      state('sitting', style({ transform: 'translateX(0)' })),
+      transition('sitting => shifting', animate('200ms ease-out'))
+    ]),
+    trigger('nextShiftState', [
+      state('shifting', style({ transform: 'translateX(0) translateY(-100%)' })),
+      state('sitting', style({ transform: 'translateX(100%) translateY(-100%)' })),
+      transition('sitting => shifting', animate('200ms ease-out'))
+    ])
+  ]
 })
 export class MixerComponent implements OnInit {
 
@@ -22,7 +34,9 @@ export class MixerComponent implements OnInit {
   showHex = true;
   historyIndex = 0;
   colorHistorical = false;
-  undoingOrRedoing = false;
+  undoing = false;
+  redoing = false;
+  shiftState = 'sitting';
   //  colorsInitialized = false;
   //inInnerPool = false;
   //inPool = false;
@@ -71,7 +85,7 @@ export class MixerComponent implements OnInit {
         this.lastColor = this.colorPoolHistory[this.colorPoolHistory.length - 2];
         this.setElementColor('colorPoolLeft', this.lastColor);
       }*/
-      if (this.undoingOrRedoing) {
+      if (this.undoing || this.redoing) {
         if (this.historyIndex == 0)
           this.lastColor = this.colorPoolHistory[this.colorPoolHistory.length - 1];
         else this.lastColor = this.colorPoolHistory[this.historyIndex - 1];
@@ -83,6 +97,8 @@ export class MixerComponent implements OnInit {
       this.poolSet = true;
     }
     else {
+      this.shiftState = 'shifting';
+
       var newColor: IrgbColor
       if (this.averageOn && !this.addOn && !this.minusOn)
         newColor = this.mixColors(this.poolColor, color);
@@ -91,10 +107,14 @@ export class MixerComponent implements OnInit {
       else if (this.minusOn)
         newColor = this.subtractColors(this.poolColor, color);
       this.historyIndex = this.colorPoolHistory.length;
-      this.setElementColor('colorPoolRight', newColor);
       this.lastColor = this.colorPoolHistory[this.historyIndex - 1]
-      this.setElementColor('colorPoolLeft', this.lastColor);
       this.poolColor = newColor;
+      this.setElementColor('colorPoolNext', newColor)
+      setTimeout(() => {
+        this.setElementColor('colorPoolRight', newColor);
+        this.setElementColor('colorPoolLeft', this.lastColor);
+        this.shiftState = 'sitting';
+      }, 200);
     }
     this.colorPoolHistory.push(this.poolColor);
   }
@@ -104,7 +124,7 @@ export class MixerComponent implements OnInit {
 
   undo() {
     if (this.colorPoolHistory.length > 1) {
-      this.undoingOrRedoing = true;
+      this.undoing = true;
       if (this.historyIndex < 1) {
         let len = this.colorPoolHistory.length;
         this.historyIndex = len - 2
@@ -118,11 +138,11 @@ export class MixerComponent implements OnInit {
       this.pickColor(color);
       this.colorPoolHistory.pop();
     }
-    this.undoingOrRedoing = false;
+    this.undoing = false;
   }
   redo() {
     if (this.colorPoolHistory.length > 1) {
-      this.undoingOrRedoing = true;
+      this.redoing = true;
       let len = this.colorPoolHistory.length;
       if (this.historyIndex >= len - 1) {
         this.historyIndex = 0
@@ -136,7 +156,7 @@ export class MixerComponent implements OnInit {
       this.pickColor(color);
       this.colorPoolHistory.pop();
     }
-    this.undoingOrRedoing = false;
+    this.redoing = false;
   }
 
   subtractColors(c1: IrgbColor, c2: IrgbColor): IrgbColor {

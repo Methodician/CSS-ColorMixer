@@ -91,12 +91,19 @@ color-circle{
     /*border: white solid 9px;*/
 }
 #colorPoolLeft{
-    /*background-color: green;*/
     height: 100%;
     width: 50%;
-    /*border-radius: 20% 0 0 20%;*/
     float: left;
-    /*pointer-events: none;*/
+}
+#colorPoolRight{
+    height: 100%;
+    width: 50%;
+    float: right;
+}
+#colorPoolNext{
+    height: 100%;
+    width: 50%;
+    float: right;
 }
 .colorLabel {
     background: #333;
@@ -104,17 +111,9 @@ color-circle{
     border-bottom-right-radius: 1em;
     border-bottom-left-radius: 1em;
 }
-#colorPoolRight{
-    /*background-color: red;*/
-    height: 100%;
-    width: 50%;
-    /*border-radius: 0 20% 20% 0;*/
-    float: right;
-    /*pointer-events: none;*/
-}
-.pointerEventsDisabled{
+/*.pointerEventsDisabled{
     pointer-events: none;
-}
+}*/
 
 #undoRow{
     margin: 45px 0 -10px 0;
