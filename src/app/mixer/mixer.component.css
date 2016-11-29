@@ -1,23 +1,12 @@
-/*.colorPick{
-    display: inline-block;
-    margin: 8px;
-}*/
 color-circle{
     display: inline-block;
     margin: 8px;
 }
 
-
-/*#poolContainer {
-  width: 60vw;
-}*/
 .mixer-ui-item{
   display: block;
   position: relative;
 }
-/*.mixer-ui-button {
-  margin: 15px auto;
-}*/
 
 .mixer-ui-set {
     position: absolute;
@@ -145,38 +134,36 @@ color-circle{
     margin-top: 15px;
 }
 
-/* ============== MEDIA QUERIES: TABLET CSS ============== */
-@media screen and ( min-width : 732px ) {
-    /*#coreColors {
-        max-width: 75vw;
-    }*/
-}
+
 
 /* ============== MEDIA QUERIES: TABLET CSS ============== */
-@media only screen and (min-device-width: 412px) {
-    i.fa.fa-undo, i.fa.fa-repeat {
-        font-size: 2em;
-        padding: 1em .2em;
+@media only screen and (max-width: 900px) {
+    i.fa.fa-undo, i.fa.fa-repeat {        
+        padding: .8em 15vw;
     }
 
     #coreColors {
-        max-width: 55vw;
+        max-width: 400px;
+    }
+
+    #generatedColors{
+        max-height: calc(100vh - 680px);
     }
 
     #mixerSettings{
         top: 92px;
     }
     #rgbHex {
-        top: 380px;
+        top: 390px;
     }
     #clearColors{
-        top: 664px;
+        top: 700px;
     }
     #resetPool{
         top: 92px;
     }
     #delete{
-        top: 664px;
+        top: 700px;
     }
     .side-button {
         margin-top: 15px;
@@ -184,7 +171,7 @@ color-circle{
 }
 
 /* ============== MEDIA QUERIES: iPhone5+ Portrait ============== */
-@media screen and ( max-width : 568px ) {
+@media screen and ( max-width : 550px ) {
     
     i.fa.fa-undo, i.fa.fa-repeat {
         font-size: 1.5em;
@@ -195,11 +182,14 @@ color-circle{
         margin-top: 15px;
     }
 
-    #undoRow > .row > .fa-undo{
+/*    #undoRow > .row > .fa-undo{
         margin-right: 80px;
     }
     #undoRow > .row > .fa-repeat{
         margin-left: 80px;
+    }*/
+    #coreColors {
+        max-width: 220px;
     }
 
     #colorPoolContainer {
@@ -212,7 +202,7 @@ color-circle{
 
     #generatedColors { 
         max-width: 65vw;   
-        max-height: calc(100vh - 320px);
+        max-height: calc(100vh - 380px);
         margin-top: 15px;
         border-radius: 10px;
     }
@@ -260,4 +250,40 @@ color-circle{
     .side-button {
         margin-top: 15px;
     }
+}
+
+
+/* ============== MEDIA QUERIES: iphone ============== */
+@media screen and ( max-width : 330px ) {
+/*     i.fa.fa-undo, i.fa.fa-repeat {
+        font-size: 2em;
+        padding: 1em .2em;
+    }*/
+
+    #coreColors {
+        max-width: 210px;
+    }
+
+    #colorPool {
+        height: 110px;
+    }
+
+/*    #mixerSettings{
+        top: 92px;
+    }
+    #rgbHex {
+        top: 380px;
+    }
+    #clearColors{
+        top: 664px;
+    }
+    #resetPool{
+        top: 92px;
+    }
+    #delete{
+        top: 664px;
+    }
+    .side-button {
+        margin-top: 15px;
+    }*/
 }
