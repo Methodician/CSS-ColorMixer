@@ -6,8 +6,10 @@
     </div>
 </div>-->
 
-
-<label>{{ showHex ? color.hex : color.rgb.slice(3) }}</label>
-<div class="colorCircle" [style.background-color]="color.hex" (click)="click()" [@jiggleState]="jiggleState">
-    <i *ngIf="deleteOn && deleteable" class="fa fa-minus-square fa-2x"></i>
+<div [@growIn]="growIn">
+    <label>{{ showHex ? color.hex : color.rgb.slice(3) }}</label>
+    <div class="colorCircle" [style.background-color]="color.hex" (click)="click()" [@jiggleState]="jiggleState">
+        <i *ngIf="deleteOn && deleteable" class="fa fa-minus-square fa-2x"></i>
+        <!--<pre>{{ color | json }}</pre>-->
+    </div>
 </div>

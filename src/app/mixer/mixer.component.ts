@@ -3,7 +3,7 @@ import { Component, OnInit, trigger, state, style, transition, animate } from '@
 
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularFire2';
 
-import { RgbColor, IrgbColor } from '../models/rgb-color';
+import { RgbColor, IrgbColor } from './../models/rgb-color';
 
 @Component({
   selector: 'mixer',
@@ -58,6 +58,7 @@ export class MixerComponent implements OnInit {
   coreColors: IrgbColor[] = [this.red, this.green, this.blue, this.white, this.black];
   //colors: IrgbColor[] = [];
   colors: FirebaseListObservable<IrgbColor[]>;
+  newestColor: IrgbColor;
 
 
   constructor(
@@ -67,6 +68,9 @@ export class MixerComponent implements OnInit {
 
   ngOnInit() {
     this.colors = this.db.list('colors');
+    this.colors.subscribe(colors =>
+      this.newestColor = colors[colors.length - 1]
+    );
     this.setElementColor('colorPool', this.poolColor);
     this.colorPoolHistory.push(this.poolColor);
   }

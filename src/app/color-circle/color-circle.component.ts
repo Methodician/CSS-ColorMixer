@@ -1,6 +1,6 @@
+import { IrgbColor, RgbColor } from '../models/rgb-color';
 import { Subject } from 'rxjs/Subject';
 import { StateService } from './../state.service';
-import { RgbColor } from '../models/rgb-color';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,21 +17,30 @@ import { Subscription } from 'rxjs/Subscription';
       transition('right => left', animate('250ms ease-in')),
       transition('left => right', animate('250ms ease-in')),
       transition('left => sitting', animate('100ms ease-in'))
+    ]),/*YOU NEED TO IDENTIFY THE NEWEST ONE IN THE LIST UPON LOAD AND ONLY ANIMATE THAT*/
+    trigger('growIn', [
+      transition('void => grow', [
+        style({ width: '0' }),
+        animate(1000, style({ width: '*' }))
+      ])
     ])
+
   ]
 })
 
 
 export class ColorCircleComponent implements OnInit, OnDestroy {
-  @Input() color = new RgbColor(0, 0, 0);
+  @Input() color: IrgbColor = new RgbColor(0, 0, 0);
   @Input() showHex = true;
   //@Input() deleteOn = false;
   @Input() deleteable = true;
+  @Input() newestColorKey = null;
   @Output() clicked = new EventEmitter();
 
   deleteOn = false;
   jiggleState = 'sitting';
   jiggling = false;
+  growIn = 'in';
 
   stateSub: Subscription;
 
@@ -43,6 +52,8 @@ export class ColorCircleComponent implements OnInit, OnDestroy {
         if (deleteOn && this.deleteable)
           this.jiggle();
       })
+    if (this.color.$key == this.newestColorKey && !this.deleteOn)
+      this.growIn = 'grow';
 
   }
 

@@ -37,9 +37,12 @@
     <div id="coreColors">
       <color-circle *ngFor="let color of coreColors" [deleteable]="false" [showHex]="showHex" [color]="color" [id]="'core-' + color.hex"
         (clicked)="pickColor($event)"></color-circle>
+      <color-circle *ngIf="newestColor" [deleteable]="false" [showHex]="showHex" [color]="newestColor"></color-circle>
     </div>
     <perfect-scrollbar id="generatedColors">
-      <color-circle *ngFor="let color of colors | async | reverse" [showHex]="showHex" [color]="color" [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
+      <color-circle *ngFor="let color of colors | async | reverse" [showHex]="showHex" [color]="color" [newestColorKey]="newestColor?.$key"
+        [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
+      <!--<pre>{{ colors | async | json }}</pre>-->
     </perfect-scrollbar>
   </div>
 </div>
