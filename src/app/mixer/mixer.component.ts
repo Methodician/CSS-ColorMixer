@@ -1,4 +1,6 @@
-import { StateService } from './../state.service';
+import { MixerService } from './../services/mixer.service';
+import { ColorService } from './../services/color.service';
+import { StateService } from './../services/state.service';
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularFire2';
@@ -40,7 +42,11 @@ export class MixerComponent implements OnInit {
 
   defaultPool: IrgbColor = new RgbColor(68, 68, 68);
 
+  //  States from service:
   deleteOn = false;
+  paletteOpen = false;
+
+  //  Other states:
   averageOn = true;
   addOn = false;
   minusOn = false;
@@ -76,17 +82,32 @@ export class MixerComponent implements OnInit {
 
 
   constructor(
-    public db: AngularFireDatabase,
-    public stateSvc: StateService
+    private db: AngularFireDatabase,
+    private stateSvc: StateService,
+    private colorSvc: ColorService,
+    private mixerSvc: MixerService
   ) { }
 
   ngOnInit() {
+    this.stateSvc.deleteState
+      .subscribe(state =>
+        this.deleteOn = state
+      );
+    this.stateSvc.paletteOpen
+      .subscribe(state =>
+        this.paletteOpen = state
+      );
     this.colors = this.db.list('colors');
     this.colors.subscribe(colors =>
       this.newestColor = colors[colors.length - 1]
     );
     this.setElementColor('colorPool', this.poolColor);
     this.colorPoolHistory.push(this.poolColor);
+  }
+
+  testPalette() {
+    //this.colorSvc.addColorToPalette(this.lastColor, '-KZrgmSn7GozJanaPNNm');
+    this.stateSvc.setPaletteOpen(!this.paletteOpen);
   }
 
   pickColor(color: IrgbColor) {
@@ -128,11 +149,11 @@ export class MixerComponent implements OnInit {
 
       var newColor: IrgbColor
       if (this.averageOn && !this.addOn && !this.minusOn)
-        newColor = this.mixColors(this.poolColor, color);
+        newColor = this.mixerSvc.mixColors(this.poolColor, color);
       else if (this.addOn)
-        newColor = this.addColors(this.poolColor, color);
+        newColor = this.mixerSvc.addColors(this.poolColor, color);
       else if (this.minusOn)
-        newColor = this.subtractColors(this.poolColor, color);
+        newColor = this.mixerSvc.subtractColors(this.poolColor, color);
       this.historyIndex = this.colorPoolHistory.length;
       this.lastColor = this.colorPoolHistory[this.historyIndex - 1]
       this.poolColor = newColor;
@@ -145,9 +166,7 @@ export class MixerComponent implements OnInit {
     }
     this.colorPoolHistory.push(this.poolColor);
   }
-  deleteColor(color: IrgbColor) {
-    this.colors.remove(color.$key);
-  }
+
 
   undo() {
     if (this.colorPoolHistory.length > 1) {
@@ -186,7 +205,7 @@ export class MixerComponent implements OnInit {
     this.redoing = false;
   }
 
-  subtractColors(c1: IrgbColor, c2: IrgbColor): IrgbColor {
+  /*subtractColors(c1: IrgbColor, c2: IrgbColor): IrgbColor {
     let r = this.subtract(c1.r, this.averageOn ? this.average(c1.r, c2.r) : c2.r);
     let g = this.subtract(c1.g, this.averageOn ? this.average(c1.g, c2.g) : c2.g);
     let b = this.subtract(c1.b, this.averageOn ? this.average(c1.b, c2.b) : c2.b);
@@ -222,11 +241,12 @@ export class MixerComponent implements OnInit {
   }
   average(a: number, b: number) {
     return Math.round((a + b) / 2);
-  }
+  }*/
 
   toggleAvg() {
     //this.method = 'Average';
     this.averageOn = !this.averageOn;
+    this.mixerSvc.averageOn = this.averageOn;
     if (!this.averageOn && !this.addOn && !this.minusOn)
       this.addOn = true;
   }
@@ -248,19 +268,17 @@ export class MixerComponent implements OnInit {
   }
 
   toggleDelete() {
-    this.deleteOn = !this.deleteOn;
-    this.stateSvc.setDeleteState(this.deleteOn);
+    this.stateSvc.setDeleteState(!this.deleteOn);
   }
 
   saveColor(side: string) {
     if (side == 'right')
-      this.pushColor(this.poolColor);
+      this.colorSvc.newColor(this.poolColor);
     if (side == 'left')
-      this.pushColor(this.lastColor)
+      this.colorSvc.newColor(this.lastColor);
   }
-  pushColor(color: IrgbColor) {
-    let newColor = new RgbColor(color.r, color.g, color.b);
-    this.colors.push(newColor);
+  deleteColor(color: IrgbColor) {
+    this.colorSvc.deleteColor(color);
   }
 
   resetPool() {

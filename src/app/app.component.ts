@@ -1,5 +1,5 @@
+import { StateService } from './services/state.service';
 import { Component } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularFire2';
 
 @Component({
   selector: 'app-root',
@@ -8,26 +8,34 @@ import { AngularFire, FirebaseListObservable } from 'angularFire2';
 })
 export class AppComponent {
 
-  constructor(private af: AngularFire) {
+  private paletteOpen = false;
+  constructor(private stateSvc: StateService) {
   }
 
-  loginGoogle() {
-    this.af.auth.login();
+  ngOnInit() {
+    this.stateSvc.paletteOpen
+      .subscribe(open =>
+        this.paletteOpen = open
+      );
   }
 
-  loginTwitter() {
-    alert('Twitter login not implemented yet... Please use Google');
-    /*this.af.auth.login({
-      provider: AuthProviders.Twitter,
-      method: AuthMethods.Redirect
-    });*/
-  }
+  //  loginGoogle() {
+  //    this.af.auth.login();
+  //  }
 
-  loginFacebook() {
-    alert('Facebook login not implemented yet... Please use Google');
-  }
+  //  loginTwitter() {
+  //    alert('Twitter login not implemented yet... Please use Google');
+  /*this.af.auth.login({
+    provider: AuthProviders.Twitter,
+    method: AuthMethods.Redirect
+  });*/
+  //  }
 
-  logout() {
-    this.af.auth.logout();
-  }
+  //  loginFacebook() {
+  //    alert('Facebook login not implemented yet... Please use Google');
+  //  }
+
+  //  logout() {
+  //    this.af.auth.logout();
+  //  }
 }

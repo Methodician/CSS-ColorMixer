@@ -1,8 +1,9 @@
-import { RgbColor } from '../models/rgb-color';
+import { RgbColor, IrgbColor } from '../models/rgb-color';
 import { Subject } from 'rxjs/Subject';
-import { StateService } from './../state.service';
+import { StateService } from './../services/state.service';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+
 
 @Component({
   selector: 'color-circle',
@@ -43,6 +44,7 @@ export class ColorCircleComponent implements OnInit, OnDestroy {
   growIn = 'in';
 
   stateSub: Subscription;
+
 
   constructor(private stateSvc: StateService) { }
   ngOnInit() {
