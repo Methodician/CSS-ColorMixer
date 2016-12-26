@@ -1,4 +1,5 @@
-import { RgbColor, IrgbColor } from '../models/rgb-color';
+import { RgbColor } from '../models/rgb-color';
+import { IrgbColor } from '../models/irgb-color';
 import { Subject } from 'rxjs/Subject';
 import { StateService } from './../services/state.service';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
@@ -31,7 +32,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 
 export class ColorCircleComponent implements OnInit, OnDestroy {
-  @Input() color: any = new RgbColor(0, 0, 0);
+  @Input() color: IrgbColor = new RgbColor(0, 0, 0);
   @Input() showHex = true;
   //@Input() deleteOn = false;
   @Input() deleteable = true;

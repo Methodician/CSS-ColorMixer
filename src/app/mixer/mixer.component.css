@@ -3,6 +3,10 @@ color-circle{
     margin: 8px;
 }
 
+#test {
+    top: 0;
+}
+
 .mixer-ui-item{
   display: block;
   position: relative;
@@ -29,6 +33,9 @@ color-circle{
   right: 0;
   border-radius: 10px 0 0 10px;
 }
+.ui-right-with-palette {
+    right: 17vw;
+}
 
 .colorPicksContainer{
     text-align: center;
@@ -36,9 +43,16 @@ color-circle{
     /*padding: 0 25%;*/
 }
 
-#mixer-area {
-    max-width: 75vw;
-    margin: auto;
+/*#mixer-area {
+
+}*/
+.mixer-full {
+    max-width: 74vw;
+    margin: 0 13vw;
+}
+.mixer-squished {
+    max-width: 64vw;
+    margin: 0 7vw;
 }
 
 #coreColors {

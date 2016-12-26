@@ -1,7 +1,8 @@
 
+mixer {
+    /*float: left;*/
+    display: inline-block;
+}
 palettes{
     float: right;
-    width: 200px;
-    height: 100vh;
-    border-left: 2px solid white;
 }

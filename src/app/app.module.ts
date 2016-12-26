@@ -15,6 +15,7 @@ import { MixerComponent } from './mixer/mixer.component';
 import { ColorCircleComponent } from './color-circle/color-circle.component';
 import { PalettesComponent } from './palettes/palettes.component';
 import { ReversePipe } from './reverse.pipe';
+import { PaletteComponent } from './palettes/palette/palette.component';
 
 
 const PERVECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -27,7 +28,8 @@ const PERVECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MixerComponent,
     ColorCircleComponent,
     PalettesComponent,
-    ReversePipe
+    ReversePipe,
+    PaletteComponent
   ],
   imports: [
     BrowserModule,

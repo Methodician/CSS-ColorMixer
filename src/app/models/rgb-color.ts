@@ -22,12 +22,3 @@ export class RgbColor {
         this.hex = ('#' + hexR + hexG + hexB).toUpperCase();
     }
 }
-
-export interface IrgbColor {
-    r: number;
-    g: number;
-    b: number;
-    rgb: string;
-    hex: string;
-    $key?: string;
-}

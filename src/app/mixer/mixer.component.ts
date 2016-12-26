@@ -76,8 +76,8 @@ export class MixerComponent implements OnInit {
   colorPoolHistory: IrgbColor[] = [];
 
   coreColors: IrgbColor[] = [this.red, this.green, this.blue, this.white, this.black];
-  //colors: IrgbColor[] = [];
-  colors: FirebaseListObservable<IrgbColor[]>;
+  colors: IrgbColor[] = [];
+  //colors: FirebaseListObservable<IrgbColor[]>;
   newestColor: IrgbColor;
 
 
@@ -97,16 +97,21 @@ export class MixerComponent implements OnInit {
       .subscribe(state =>
         this.paletteOpen = state
       );
-    this.colors = this.db.list('colors');
+    this.colorSvc.colors
+      .subscribe(colors => {
+        this.colors = colors;
+        this.newestColor = colors[colors.length - 1];
+      })
+    /*this.colors = this.db.list('colors');
     this.colors.subscribe(colors =>
       this.newestColor = colors[colors.length - 1]
-    );
+    );*/
     this.setElementColor('colorPool', this.poolColor);
     this.colorPoolHistory.push(this.poolColor);
   }
 
   testPalette() {
-    //this.colorSvc.addColorToPalette(this.lastColor, '-KZrgmSn7GozJanaPNNm');
+    //this.colorSvc.addColorToPalette(this.lastColor, '-KZwa6c_in7E--t7KP-2');
     this.stateSvc.setPaletteOpen(!this.paletteOpen);
   }
 
@@ -293,7 +298,7 @@ export class MixerComponent implements OnInit {
   }
 
   clearColors() {
-    this.colors.remove();
+    this.colorSvc.clearColors();
   }
   toggleHex() {
     this.showHex = !this.showHex;

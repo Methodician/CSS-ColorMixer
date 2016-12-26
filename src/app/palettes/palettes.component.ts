@@ -1,3 +1,7 @@
+import { IrgbColor } from './../models/rgb-color';
+import { FirebaseListObservable } from 'angularFire2';
+import { ColorService } from './../services/color.service';
+import { StateService } from './../services/state.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PalettesComponent implements OnInit {
 
-  constructor() { }
+  private paletteOpen = false;
+
+  palettes: any[];
+  constructor(
+    private stateSvc: StateService,
+    private colorSvc: ColorService
+  ) { }
 
   ngOnInit() {
+    this.stateSvc.paletteOpen
+      .subscribe(open =>
+        this.paletteOpen = open
+      );
+
+    this.colorSvc.palettes
+      .subscribe(palettes =>
+        this.palettes = palettes
+      );
   }
+
 
 }

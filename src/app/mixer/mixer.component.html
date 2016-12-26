@@ -15,7 +15,7 @@
           <i class="fa fa-trash"></i>
         </button>
 </div>
-<div id="mixer-area">
+<div id="mixer-area" [class.mixer-squished]="paletteOpen" [class.mixer-full]="!paletteOpen">
   <div id="colorPoolContainer">
     <div class="row" id="undoRow">
       <i (click)="undo()" class="fa fa-undo"></i>
@@ -43,21 +43,26 @@
       <!--<color-circle *ngIf="newestColor" [deleteable]="false" [showHex]="showHex" [color]="newestColor"></color-circle>-->
     </div>
     <perfect-scrollbar id="generatedColors">
-      <color-circle *ngFor="let color of colors | async | reverse" [showHex]="showHex" [color]="color" [newestColorKey]="newestColor?.$key"
+      <color-circle *ngFor="let color of colors | reverse" [showHex]="showHex" [color]="color" [newestColorKey]="newestColor?.$key"
         [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
       <!--<pre>{{ colors | async | json }}</pre>-->
     </perfect-scrollbar>
   </div>
 </div>
-<div id="resetPool" class="mixer-ui-set mixer-ui-right">
+<div id="resetPool" class="mixer-ui-set mixer-ui-right" [class.ui-right-with-palette]="paletteOpen">
   <span class="mixer-ui-item"></span>
   <button (click)="resetPool()" class="mixer-ui-item  btn btn-circle btn-info">
     <i class="fa fa-refresh"></i>
   </button>
 </div>
-<div id="delete" class="mixer-ui-set mixer-ui-right">
+<div id="delete" class="mixer-ui-set mixer-ui-right" [class.ui-right-with-palette]="paletteOpen">
   <span class="mixer-ui-item"></span>
   <button (click)="toggleDelete()" class="mixer-ui-item  btn btn-circle btn-warning">
     <i class="fa fa-minus-square"></i>
   </button>
+</div>
+
+<div id="test" class="mixer-ui-set mixer-ui-right" [class.ui-right-with-palette]="paletteOpen">
+  <span class="mixer-ui-item"></span>
+  <button (click)="testPalette()" class="mixer-ui-item btn btn-circle btn-success">test</button>
 </div>
