@@ -7,9 +7,10 @@
 </div>-->
 
 <div [@growIn]="growIn">
-    <label>{{ showHex ? color.hex : color.rgb.slice(3) }}</label>
-    <div class="colorCircle" [style.background-color]="color.hex" (click)="click()" [@jiggleState]="jiggleState">
+    <label *ngIf="!inPalette">{{ showHex ? color.hex : color.rgb.slice(3) }}</label>
+    <div class="colorCircle" [style.background-color]="color.hex" [class.paletteColor]="inPalette" (click)="click()" [@jiggleState]="jiggleState">
         <i *ngIf="deleteOn && deleteable" class="fa fa-minus-square fa-2x"></i>
+        <i *ngIf="addToPalette" class="fa fa-plus-square fa-2x"></i>
         <!--<pre>{{ color | json }}</pre>-->
     </div>
 </div>

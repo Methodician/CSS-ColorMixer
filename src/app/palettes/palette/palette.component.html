@@ -7,9 +7,8 @@
     <i (click)="removeColors()" class="fa fa-minus fa-2x"></i>
   </div>
   <div class="palette-body">
-    <p>{{ addToPaletteState }}</p>
     <p>{{ palette.name }}</p>
-    <color-circle *ngFor="let color of palette.colorSet" [color]="color"></color-circle>
+    <color-circle *ngFor="let color of palette.colorSet" [color]="color" [inPalette]="true" [deleteOn]="removeStateOn()" (clicked)="clickColor($event)"></color-circle>
   </div>
 
 </div>

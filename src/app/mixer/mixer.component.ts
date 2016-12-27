@@ -46,6 +46,7 @@ export class MixerComponent implements OnInit {
   //  States from service:
   deleteOn = false;
   paletteOpen = false;
+  addToPaletteState = null;
 
   //  Other states:
   averageOn = true;
@@ -98,6 +99,10 @@ export class MixerComponent implements OnInit {
       .subscribe(state =>
         this.paletteOpen = state
       );
+    this.stateSvc.addToPalette
+      .subscribe(state =>
+        this.addToPaletteState = state
+      );
     this.colorSvc.colors
       .subscribe(colors => {
         this.colors = colors;
@@ -120,6 +125,9 @@ export class MixerComponent implements OnInit {
   pickColor(color: IrgbColor) {
     if (this.deleteOn) {
       this.deleteColor(color);
+    }
+    else if (this.addToPaletteState) {
+      this.colorSvc.addColorToPalette(color, this.addToPaletteState);
     }
     else {
       this.selectColor(color);

@@ -1,4 +1,5 @@
-import { IrgbColor } from '../models/irgb-color';
+import { IrgbColor } from './../models/irgb-color';
+import { StateService } from './state.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { RgbColor } from './../models/rgb-color';
@@ -18,33 +19,56 @@ export class ColorService {
 
   palettes: Subject<any[]> = new BehaviorSubject<any[]>([]);
   private _palettes: Observable<any[]> = null;
+  private paletteState: string;
+  private paletteColorCount: number;
 
-  constructor(public db: AngularFireDatabase) {
+  constructor(
+    private db: AngularFireDatabase,
+    private stateSvc: StateService
+  ) {
     this.init();
   }
 
   init() {
+
     this._colors = this.db.list('colors');
+
     this._colors.subscribe(colors => {
       this.colors.next(colors);
       this.colorCount = colors.length
     });
 
+    this.updatePalettes();
 
+    this._palettes.subscribe(palettes => {
+      this.palettes.next(palettes);
+    });
+
+    this.stateSvc.addToPalette
+      .subscribe(state => {
+        this.paletteState = state
+        if (state)
+          this.updatePalettes();
+      });
+  }
+
+  updatePalettes() {
     this._palettes = this.db.list('/palettes')
       .map(palettes => {
         palettes.map(palette => {
           palette.colorSet = [];
           for (var key in palette.colors) {
             if (!palette.colors.hasOwnProperty(key)) continue;
-            palette.colorSet.push(palette.colors[key]);
+            let nextColor = palette.colors[key];
+            let newColor: IrgbColor = new RgbColor(nextColor.r, nextColor.g, nextColor.b);
+            newColor.$key = key;
+            palette.colorSet.push(newColor);
           }
+          if (this.paletteState == palette.$key)
+            this.paletteColorCount = palette.colorSet.length;
         })
         return palettes;
       });
-    this._palettes.subscribe(palettes => {
-      this.palettes.next(palettes);
-    });
   }
 
   newColor(color: IrgbColor) {
@@ -68,17 +92,29 @@ export class ColorService {
 
 
   addColorToPalette(color: IrgbColor, paletteId?: string) {
+    let newColor = new RgbColor(color.r, color.g, color.b);
     if (paletteId)
-      this.addToPalette(color, paletteId);
+      this.addToPalette(newColor, paletteId);
     else {
-      this.db.list('palettes/').push({})
-        .then(x => {
-          this.addToPalette(color, x.key);
-        });
+      alert('that palette does not exist');
     }
   }
   addToPalette(color: IrgbColor, paletteId: string) {
-    this.db.list('palettes/' + paletteId + '/colors/').push(color);
+    if (this.paletteColorCount >= 7)
+      alert('It\'s a good practice not to use too many colors in a palette. Please keep it under 8.')
+    else
+      this.db.list('palettes/' + paletteId + '/colors/').push(color);
+
+  }
+  removeFromPalette(color: IrgbColor, paletteId: string) {
+    this.db.object('palettes/' + paletteId + '/colors/' + color.$key)
+      .remove()
+      .then(done => {
+        console.log(done);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
   createPalette(/*paletteId?: string, */paletteName?: string) {
     var name = paletteName;
@@ -100,7 +136,7 @@ export class ColorService {
       })
       .catch(error => {
         console.log(error);
-      })
+      });
   }
 
 }

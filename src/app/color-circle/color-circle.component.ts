@@ -33,28 +33,40 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class ColorCircleComponent implements OnInit, OnDestroy {
   @Input() color: IrgbColor = new RgbColor(0, 0, 0);
+  @Input() inPalette = false;
   @Input() showHex = true;
-  //@Input() deleteOn = false;
   @Input() deleteable = true;
   @Input() newestColorKey = null;
   @Output() clicked = new EventEmitter();
+  @Input() deleteOn = false;
 
-  deleteOn = false;
+  addToPalette = false;
+  //deleteOn = false;
   jiggleState = 'sitting';
   jiggling = false;
   growIn = 'in';
 
-  stateSub: Subscription;
+  deleteSub: Subscription;
+  addSub: Subscription;
 
 
   constructor(private stateSvc: StateService) { }
   ngOnInit() {
-    this.stateSub = this.stateSvc.deleteState
-      .subscribe(deleteOn => {
-        this.deleteOn = deleteOn;
-        if (deleteOn && this.deleteable)
-          this.jiggle();
-      })
+    if (!this.inPalette) {
+      this.deleteSub = this.stateSvc.deleteState
+        .subscribe(deleteOn => {
+          this.deleteOn = deleteOn;
+          if (deleteOn && this.deleteable)
+            this.jiggle();
+        });
+      this.addSub = this.stateSvc.addToPalette
+        .subscribe(addState => {
+          if (addState)
+            this.addToPalette = true;
+          else this.addToPalette = false;
+        })
+    }
+
     if (this.color.$key == this.newestColorKey && !this.deleteOn)
       this.growIn = 'grow';
 
@@ -82,14 +94,17 @@ export class ColorCircleComponent implements OnInit, OnDestroy {
 
 
   click() {
-    if (!this.deleteable && this.deleteOn) {
+    if ((!this.deleteable && this.deleteOn) || (!this.addToPalette && !this.deleteOn)) {
       return;
     }
     this.clicked.emit(this.color);
   }
 
   ngOnDestroy() {
-    this.stateSub.unsubscribe();
+    if (this.deleteSub)
+      this.deleteSub.unsubscribe();
+    if (this.addSub)
+      this.addSub.unsubscribe();
   }
 
 }

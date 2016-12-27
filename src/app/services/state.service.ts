@@ -10,17 +10,22 @@ export class StateService {
   deleteState: Subject<boolean> = new BehaviorSubject<boolean>(false);
   paletteOpen: Subject<boolean> = new BehaviorSubject<boolean>(true);
   addToPalette: Subject<string> = new BehaviorSubject<string>(null);
+  removeFromPalette: Subject<string> = new BehaviorSubject<string>(null);
 
   setDeleteState(state: boolean) {
     this.deleteState.next(state);
   }
 
   setPaletteOpen(state: boolean) {
-    this.paletteOpen.next(state); 
+    this.paletteOpen.next(state);
   }
 
-  setAddToPaletteState(state?: string){
+  setAddToPaletteState(state?: string) {
     this.addToPalette.next(state);
+  }
+
+  setRemoveFromPaletteState(state?: string) {
+    this.removeFromPalette.next(state);
   }
 
 }
