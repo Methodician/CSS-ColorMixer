@@ -1,6 +1,7 @@
+import { IrgbColor } from '../models/irgb-color';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
-import { IrgbColor, RgbColor } from './../models/rgb-color';
+import { RgbColor } from './../models/rgb-color';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularFire2';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';

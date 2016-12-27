@@ -1,4 +1,3 @@
-import { IrgbColor } from './../models/rgb-color';
 import { FirebaseListObservable } from 'angularFire2';
 import { ColorService } from './../services/color.service';
 import { StateService } from './../services/state.service';

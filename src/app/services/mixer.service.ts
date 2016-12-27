@@ -1,5 +1,6 @@
+import { IrgbColor } from './../models/irgb-color';
 import { Injectable } from '@angular/core';
-import { RgbColor, IrgbColor } from './../models/rgb-color';
+import { RgbColor } from './../models/rgb-color';
 
 
 @Injectable()

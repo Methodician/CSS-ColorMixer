@@ -5,7 +5,8 @@ import { Component, OnInit, trigger, state, style, transition, animate } from '@
 
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularFire2';
 
-import { RgbColor, IrgbColor } from './../models/rgb-color';
+import { RgbColor } from './../models/rgb-color';
+import { IrgbColor } from './../models/irgb-color';
 
 @Component({
   selector: 'mixer',

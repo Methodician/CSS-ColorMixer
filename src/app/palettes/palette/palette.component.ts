@@ -4,7 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'palette',
   templateUrl: './palette.component.html',
-  styleUrls: ['./palette.component.css'],
+  //styleUrls: ['./palette.component.css'],
   styles: [
     `
 .fa {
