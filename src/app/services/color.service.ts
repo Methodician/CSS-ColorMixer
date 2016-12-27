@@ -6,6 +6,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularFire2';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
 
 
 @Injectable()
@@ -64,11 +65,21 @@ export class ColorService {
           this.addToPalette(color, x.key);
         });
     }
-
-    //this._colors.update('/palettes/' + paletteId,)
   }
   addToPalette(color: IrgbColor, paletteId: string) {
     this.db.list('palettes/' + paletteId + '/colors/').push(color);
+  }
+  createPalette(/*paletteId?: string, */paletteName?: string) {
+    var name = paletteName;
+    this.db.object('/palettesMade')
+      .take(1)
+      .subscribe(paletteNumber => {
+        let newNumber = paletteNumber.$value + 1;
+        if (!paletteName)
+          name = 'Palette #' + newNumber;
+        this.db.object('/palettesMade').set(newNumber);
+        this.db.list('/palettes').push({ name: name });
+      })
   }
 
   deleteColor(color: IrgbColor) {

@@ -112,8 +112,9 @@ export class MixerComponent implements OnInit {
   }
 
   testPalette() {
-    //this.colorSvc.addColorToPalette(this.lastColor, '-KZwa6c_in7E--t7KP-2');
     this.stateSvc.setPaletteOpen(!this.paletteOpen);
+    //this.colorSvc.addColorToPalette(this.lastColor, '-KZwa6c_in7E--t7KP-2');
+    //this.colorSvc.createPalette()
   }
 
   pickColor(color: IrgbColor) {
