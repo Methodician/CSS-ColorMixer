@@ -12,6 +12,7 @@ import 'rxjs/add/operator/take';
 @Injectable()
 export class ColorService {
 
+  colorCount: number;
   colors: Subject<IrgbColor[]> = new BehaviorSubject<IrgbColor[]>([]);
   private _colors: FirebaseListObservable<IrgbColor[]> = null;
 
@@ -26,6 +27,7 @@ export class ColorService {
     this._colors = this.db.list('colors');
     this._colors.subscribe(colors => {
       this.colors.next(colors);
+      this.colorCount = colors.length
     });
 
 
@@ -46,15 +48,24 @@ export class ColorService {
   }
 
   newColor(color: IrgbColor) {
-    this._colors.push(new RgbColor(color.r, color.g, color.b));
+    console.log(this.colorCount);
+    if (this.colorCount >= 50)
+      alert('You can\'t store more than 50 colors here. Please remove some with the yellow button to the right, or clear the bucket with the red button to the left. You can keep them in palettes for longer term storage.');
+    else
+      this._colors.push(new RgbColor(color.r, color.g, color.b));
+
+    console.log(this.colorCount);
+
   }
 
-  /* addNewPalette() {
-     return this.db.list('palettes').push({})
-       .then(x => {
-         return (x.key);
-       })
-   }*/
+  deleteColor(color: IrgbColor) {
+    this._colors.remove(color.$key);
+  }
+  clearColors() {
+    this._colors.remove();
+  }
+
+
 
   addColorToPalette(color: IrgbColor, paletteId?: string) {
     if (paletteId)
@@ -81,12 +92,15 @@ export class ColorService {
         this.db.list('/palettes').push({ name: name });
       })
   }
-
-  deleteColor(color: IrgbColor) {
-    this._colors.remove(color.$key);
-  }
-  clearColors() {
-    this._colors.remove();
+  deletePalette(paletteId: string) {
+    this.db.list('palettes/' + paletteId)
+      .remove()
+      .then(done => {
+        console.log(done);
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
 }

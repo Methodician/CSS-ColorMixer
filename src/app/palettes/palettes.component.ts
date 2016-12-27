@@ -30,5 +30,9 @@ export class PalettesComponent implements OnInit {
       );
   }
 
+  addPalette() {
+    this.colorSvc.createPalette()
+  }
+
 
 }

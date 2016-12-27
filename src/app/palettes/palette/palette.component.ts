@@ -1,3 +1,6 @@
+import { ColorService } from './../../services/color.service';
+import { IPalette } from './../../models/ipalette';
+import { StateService } from './../../services/state.service';
 import { IrgbColor } from './../../models/irgb-color';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -5,8 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
   selector: 'palette',
   templateUrl: './palette.component.html',
   //styleUrls: ['./palette.component.css'],
-  styles: [
-    `
+  styles: [`
 .fa {
   display: block;
 }
@@ -46,15 +48,39 @@ p {
 :host /deep/ label {
   display: none;
 }
-
-    `
-  ]
+`]
 })
 export class PaletteComponent implements OnInit {
-  @Input() palette: IrgbColor[] = [];
-  constructor() { }
+  @Input() palette: IPalette;
+
+  addToPaletteState: string = null;
+  removeFromPaletteState: boolean = false;
+  constructor(
+    private stateSvc: StateService,
+    private colorSvc: ColorService
+  ) { }
 
   ngOnInit() {
+    this.stateSvc.addToPalette
+      .subscribe(state =>
+        this.addToPaletteState = state
+      );
+  }
+
+  addColors() {
+    this.removeFromPaletteState = false;
+    if (this.addToPaletteState == this.palette.$key)
+      this.stateSvc.setAddToPaletteState();
+    else this.stateSvc.setAddToPaletteState(this.palette.$key);
+  }
+
+  removeColors() {
+    this.stateSvc.setAddToPaletteState();
+    this.removeFromPaletteState = !this.removeFromPaletteState;
+  }
+
+  deletePalette() {
+    this.colorSvc.deletePalette(this.palette.$key);
   }
 
 }

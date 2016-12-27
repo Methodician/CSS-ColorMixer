@@ -1,15 +1,14 @@
 <div class="palette">
   <div class="palette-buttons">
-    <i class="fa fa-trash fa-3x"></i>
+    <i (click)="deletePalette()" class="fa fa-trash fa-3x"></i>
   </div>
   <div class="palette-buttons">
-    <i class="fa fa-plus fa-2x"></i>
-    <i class="fa fa-minus fa-2x"></i>
+    <i (click)="addColors()" class="fa fa-plus fa-2x"></i>
+    <i (click)="removeColors()" class="fa fa-minus fa-2x"></i>
   </div>
   <div class="palette-body">
-    <p>
-      {{ palette.name }}
-    </p>
+    <p>{{ addToPaletteState }}</p>
+    <p>{{ palette.name }}</p>
     <color-circle *ngFor="let color of palette.colorSet" [color]="color"></color-circle>
   </div>
 

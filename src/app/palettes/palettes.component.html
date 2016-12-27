@@ -1,4 +1,4 @@
 <div id="palette-wrapper">
-  
+  <button (click)="addPalette()" class="btn btn-success">Add New Palette</button>
   <palette *ngFor="let p of palettes" [palette]="p"></palette>
 </div>
