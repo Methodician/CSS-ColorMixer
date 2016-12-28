@@ -8,7 +8,7 @@ export class StateService {
   constructor() { }
 
   deleteState: Subject<boolean> = new BehaviorSubject<boolean>(false);
-  paletteOpen: Subject<boolean> = new BehaviorSubject<boolean>(true);
+  paletteOpen: Subject<boolean> = new BehaviorSubject<boolean>(false);
   addToPalette: Subject<string> = new BehaviorSubject<string>(null);
   removeFromPalette: Subject<string> = new BehaviorSubject<string>(null);
   selectedPalette: Subject<string> = new BehaviorSubject<string>(null);

@@ -68,6 +68,9 @@ color-circle{
     position: relative;
     display: flex;
 }
+.compressed-for-palette {
+    max-height: calc(100vh - 670px) !important;
+}
 
 .fa-undo, .fa-repeat {
     font-size: 2em;

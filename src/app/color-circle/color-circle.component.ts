@@ -94,7 +94,7 @@ export class ColorCircleComponent implements OnInit, OnDestroy {
 
 
   click() {
-    if ((!this.deleteable && this.deleteOn) || (!this.addToPalette && !this.deleteOn)) {
+    if ((!this.deleteable && this.deleteOn) || (!this.addToPalette && !this.deleteOn && this.inPalette)) {
       return;
     }
     this.clicked.emit(this.color);

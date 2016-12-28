@@ -78,6 +78,7 @@ export class MixerComponent implements OnInit {
   colorPoolHistory: IrgbColor[] = [];
 
   coreColors: IrgbColor[] = [this.red, this.green, this.blue, this.white, this.black];
+  paletteColors: IrgbColor[] = null;
   colors: IrgbColor[] = [];
   //colors: FirebaseListObservable<IrgbColor[]>;
   newestColor: IrgbColor;
@@ -108,6 +109,12 @@ export class MixerComponent implements OnInit {
         this.colors = colors;
         this.newestColor = colors[colors.length - 1];
       })
+    this.colorSvc.selectedPalette
+      .subscribe(palette => {
+        if (palette && palette.colorSet.length > 0)
+          this.paletteColors = palette.colorSet;
+        else this.paletteColors = null;
+      })
     /*this.colors = this.db.list('colors');
     this.colors.subscribe(colors =>
       this.newestColor = colors[colors.length - 1]
@@ -116,10 +123,8 @@ export class MixerComponent implements OnInit {
     this.colorPoolHistory.push(this.poolColor);
   }
 
-  testPalette() {
+  togglePalette() {
     this.stateSvc.setPaletteOpen(!this.paletteOpen);
-    //this.colorSvc.addColorToPalette(this.lastColor, '-KZwa6c_in7E--t7KP-2');
-    //this.colorSvc.createPalette()
   }
 
   pickColor(color: IrgbColor) {
