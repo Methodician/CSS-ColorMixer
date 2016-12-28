@@ -1,5 +1,4 @@
-<mixer>
-
-</mixer>
+<div id="mixer-wrapper" [class.no-palette-display]="!paletteOpen">
+    <mixer></mixer>
+</div>
 <palettes *ngIf="paletteOpen"></palettes>
-<!--<palettes></palettes>-->

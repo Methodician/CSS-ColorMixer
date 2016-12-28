@@ -18,10 +18,10 @@
 <div id="mixer-area" [class.mixer-squished]="paletteOpen" [class.mixer-full]="!paletteOpen">
   <div id="colorPoolContainer">
     <div class="row" id="undoRow">
-      <i (click)="undo()" class="fa fa-undo"></i>
-      <i (click)="redo()" class="fa fa-repeat"></i>
+      <i (click)="undo()" class="fa fa-undo" [class.fa-squished]="paletteOpen"></i>
+      <i (click)="redo()" class="fa fa-repeat" [class.fa-squished]="paletteOpen"></i>
     </div>
-    <div id="colorPool">
+    <div id="colorPool" [class.pool-squished]="paletteOpen" [class.pool-full]="!paletteOpen">
       <div id="colorPoolLast" class="leftColor poolColor" [@lastShiftState]="shiftState">
         <span class="colorLabel">{{ showHex ? poolColor?.hex : poolColor?.rgb.slice(3) }}</span>
       </div>
@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="colorPicksContainer">
-    <div id="coreColors">
+    <div id="coreColors" [class.core-colors-squished]="paletteOpen" [class.core-colors-full]="!paletteOpen">
       <color-circle *ngFor="let color of coreColors" [deleteable]="false" [showHex]="showHex" [color]="color" [id]="'core-' + color.hex"
         (clicked)="pickColor($event)"></color-circle>
     </div>
@@ -45,7 +45,7 @@
       <color-circle *ngFor="let color of paletteColors" [deleteable]="false" [showHex]="showHex" [color]="color" [id]="'palette-' + color.hex"
         (clicked)="pickColor($event)"></color-circle>
     </div>
-    <perfect-scrollbar id="generatedColors" [class.compressed-for-palette]="paletteColors">
+    <perfect-scrollbar id="generatedColors" [class.compressed-for-palette]="paletteColors" [class.generated-colors-squished]="paletteOpen">
       <color-circle *ngFor="let color of colors | reverse" [showHex]="showHex" [color]="color" [newestColorKey]="newestColor?.$key"
         [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
     </perfect-scrollbar>

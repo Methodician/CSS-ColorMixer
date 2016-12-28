@@ -1,7 +1,11 @@
 
-mixer {
+#mixer-wrapper {
     /*float: left;*/
     display: inline-block;
+}
+
+.no-palette-display {
+    display: initial;
 }
 palettes{
     float: right;

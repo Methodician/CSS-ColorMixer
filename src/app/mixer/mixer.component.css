@@ -46,7 +46,7 @@ color-circle{
     margin: 0 13vw;
 }
 .mixer-squished {
-    max-width: 64vw;
+    max-width: calc(100vw - 620px);
     margin: 0 7vw;
 }
 
@@ -54,8 +54,11 @@ color-circle{
     margin: auto;
     /*background-color: #7f7f7f;*/
     border-radius: 20px;
-    max-width: 75vw;
     width: 595px;
+}
+
+.core-colors-full {
+    max-width: 75vw;
 }
 
 #generatedColors {
@@ -68,14 +71,23 @@ color-circle{
     position: relative;
     display: flex;
 }
+
+.generated-colors-squished {
+    max-height: calc(100vh - 680px) !important;
+}
+
 .compressed-for-palette {
     max-height: calc(100vh - 670px) !important;
 }
 
 .fa-undo, .fa-repeat {
     font-size: 2em;
-    padding: 0px 15vw 30px;
+    padding: 0 15vw 30px;
 }
+.fa-squished {
+    padding: 0 9vw 30px;
+}
+
 
 #colorPoolContainer{
     padding: 0px 0px 10px;
@@ -85,11 +97,17 @@ color-circle{
 
 #colorPool{
     height: 250px;
-    width: 60vw;
     margin: 0 auto;
     border-radius: 25px;
     overflow: hidden;
     /*border: white solid 9px;*/
+}
+
+.pool-full {
+    width: 60vw;
+}
+.pool-squished {
+    width: calc(100vw - 700px);
 }
 /*Lots of duplicated code here...*/
 .poolColor{
@@ -119,12 +137,12 @@ color-circle{
     margin: 45px 0 -10px 0;
 }
 
-#undoRow > .row > .fa-undo{
+/*#undoRow > .row > .fa-undo{
     margin-right: 130px;
 }
 #undoRow > .row > .fa-repeat{
     margin-left: 130px;
-}
+}*/
 
 /* Mixer Side UI Buttons*/
 #mixerSettings{
@@ -149,12 +167,29 @@ color-circle{
     margin-top: 15px;
 }
 
-
+@media only screen and (max-width: 1200px) {
+    .core-colors-squished {
+        max-width: 400px;
+    }
+    .pool-squished {
+        width: calc(100vw - 560px);
+    }
+    .mixer-squished {
+        max-width: calc(100vw - 520px);
+        margin: 0 7vw;
+    }
+    .generated-colors-squished {
+        max-height: calc(100vh - 680px) !important;
+    }
+}
 
 /* ============== MEDIA QUERIES: TABLET CSS ============== */
 @media only screen and (max-width: 900px) {
     i.fa.fa-undo, i.fa.fa-repeat {        
         padding: .8em 15vw;
+    }
+    .fa-squished {
+        padding: 9vw 30px !important;
     }
 
     #coreColors {
