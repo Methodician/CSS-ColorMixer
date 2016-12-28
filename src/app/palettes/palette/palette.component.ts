@@ -8,42 +8,42 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'palette',
   templateUrl: './palette.component.html',
-  //styleUrls: ['./palette.component.css'],
-  styles: [`
-.fa {
-  display: block;
-}
-.fa-trash {
-  transform: translateY(-12px);
-  color: red;
-}
-.fa-plus {
-  margin-top: 2px;
-  color: green;
-}
-.fa-minus {
-  margin-top: 2px;
-  color: orange;
-}
-.palette {
-  margin-left: 7px;
-}
-.palette-buttons {
+  styleUrls: ['./palette.component.css']
+  /*  styles: [`
+  .fa {
+    display: block;
+  }
+  .fa-trash {
+    transform: translateY(-12px);
+    color: red;
+  }
+  .fa-plus {
+    margin-top: 2px;
+    color: green;
+  }
+  .fa-minus {
+    margin-top: 2px;
+    color: orange;
+  }
+  .palette {
+    margin-left: 7px;
+  }
+  .palette-buttons {
+      display: inline-block;
+  }
+  .palette-body {
+      display: inline-block;
+  }
+  color-circle {
+    margin: 3px;
     display: inline-block;
-}
-.palette-body {
-    display: inline-block;
-}
-color-circle {
-  margin: 3px;
-  display: inline-block;
-}
-p {
-  margin: 0
-}
-
-
-`]
+  }
+  p {
+    margin: 0
+  }
+  
+  
+  `]*/
 })
 export class PaletteComponent implements OnInit {
   @Input() palette: IPalette;
@@ -52,6 +52,8 @@ export class PaletteComponent implements OnInit {
   addStateSub: Subscription;
   removeFromPaletteState: string = null;
   removeStateSub: Subscription;
+  selectedPaleteState: string = null;
+  selectedStateSub: Subscription;
 
   constructor(
     private stateSvc: StateService,
@@ -67,22 +69,42 @@ export class PaletteComponent implements OnInit {
       .subscribe(state =>
         this.removeFromPaletteState = state
       );
+    this.selectedStateSub = this.stateSvc.selectedPalette
+      .subscribe(state =>
+        this.selectedPaleteState = state
+      )
   }
 
   removeStateOn() {
     return this.removeFromPaletteState == this.palette.$key;
   }
+  addStateOn() {
+    return this.addToPaletteState == this.palette.$key;
+  }
+  selectedStateOn() {
+    return this.selectedPaleteState == this.palette.$key;
+  }
+
+  selectPalette() {
+    this.stateSvc.setRemoveFromPaletteState();
+    this.stateSvc.setAddToPaletteState();
+    if (this.selectedStateOn())
+      this.stateSvc.setSelectedPalette();
+    else this.stateSvc.setSelectedPalette(this.palette.$key);
+  }
 
   addColors() {
     this.stateSvc.setRemoveFromPaletteState();
-    if (this.addToPaletteState == this.palette.$key)
+    this.stateSvc.setSelectedPalette();
+    if (this.addStateOn())
       this.stateSvc.setAddToPaletteState();
     else this.stateSvc.setAddToPaletteState(this.palette.$key);
   }
 
   removeColors() {
     this.stateSvc.setAddToPaletteState();
-    if (this.removeFromPaletteState == this.palette.$key)
+    this.stateSvc.setSelectedPalette();
+    if (this.removeStateOn())
       this.stateSvc.setRemoveFromPaletteState();
     else this.stateSvc.setRemoveFromPaletteState(this.palette.$key);
   }

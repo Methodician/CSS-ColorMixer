@@ -2,11 +2,6 @@ color-circle{
     display: inline-block;
     margin: 8px;
 }
-
-#test {
-    top: 0;
-}
-
 .mixer-ui-item{
   display: block;
   position: relative;
@@ -34,7 +29,7 @@ color-circle{
   border-radius: 10px 0 0 10px;
 }
 .ui-right-with-palette {
-    right: 17vw;
+    right: 330px;
 }
 
 .colorPicksContainer{
@@ -137,6 +132,9 @@ color-circle{
 }
 #clearColors{
     top: 600px;
+}
+#paletteToggle {
+    top: 373px;
 }
 #resetPool{
     top: 135px;

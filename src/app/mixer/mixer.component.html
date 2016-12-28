@@ -62,7 +62,9 @@
   </button>
 </div>
 
-<div id="test" class="mixer-ui-set mixer-ui-right" [class.ui-right-with-palette]="paletteOpen">
+<div id="paletteToggle" class="mixer-ui-set mixer-ui-right" [class.ui-right-with-palette]="paletteOpen">
   <span class="mixer-ui-item"></span>
-  <button (click)="testPalette()" class="mixer-ui-item btn btn-circle btn-success">test</button>
+  <button (click)="testPalette()" class="mixer-ui-item btn btn-circle btn-success">
+    <i class="fa fa-th-list"></i>
+  </button>
 </div>

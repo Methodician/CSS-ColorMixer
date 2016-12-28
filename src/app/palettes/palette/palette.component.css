@@ -1,0 +1,41 @@
+.fa {
+  display: block;
+}
+.fa-trash {
+  transform: translateY(-12px);
+  color: red;
+}
+.fa-plus {
+  margin-top: 2px;
+  color: green;
+}
+.fa-minus {
+  margin-top: 2px;
+  color: orange;
+}
+.palette {
+  padding-left: 7px;
+}
+.adding-to-palette {
+    background-color: rgba(14,131,153,0.5);
+}
+.removing-from-palette {
+    background-color: rgba(180, 137, 145, 0.5);
+}
+.selected-palette {
+    background-color: rgba(121, 131, 59, 0.5);
+}
+.palette-buttons {
+    display: inline-block;
+}
+.palette-body {
+    display: inline-block;
+    width: 253px;
+}
+color-circle {
+  margin: 3px;
+  display: inline-block;
+}
+p {
+  margin: 0
+}

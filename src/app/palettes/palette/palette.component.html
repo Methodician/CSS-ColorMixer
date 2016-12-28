@@ -1,4 +1,4 @@
-<div class="palette">
+<div class="palette" [class.adding-to-palette]="addStateOn()" [class.removing-from-palette]="removeStateOn()" [class.selected-palette]="selectedStateOn()">
   <div class="palette-buttons">
     <i (click)="deletePalette()" class="fa fa-trash fa-3x"></i>
   </div>
@@ -6,7 +6,7 @@
     <i (click)="addColors()" class="fa fa-plus fa-2x"></i>
     <i (click)="removeColors()" class="fa fa-minus fa-2x"></i>
   </div>
-  <div class="palette-body">
+  <div class="palette-body" (click)="selectPalette()">
     <p>{{ palette.name }}</p>
     <color-circle *ngFor="let color of palette.colorSet" [color]="color" [inPalette]="true" [deleteOn]="removeStateOn()" (clicked)="clickColor($event)"></color-circle>
   </div>
