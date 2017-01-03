@@ -4,6 +4,10 @@ body {
     color: #ccc;
     /*margin: 15px;*/
 }
+
+html {
+    height: 100%;
+}
 /*mixer {
   max-width: 75vw;
 }*/

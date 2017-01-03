@@ -4,3 +4,17 @@
     border-left: 2px solid white;
     height: 100vh;
 }
+
+/* ============== MEDIA QUERIES: TABLET CSS ============== */
+@media only screen and (max-width: 900px) {
+    #palette-wrapper {
+        width: 240px;
+    }
+}
+
+/* ============== MEDIA QUERIES: Phones Portrait ============== */
+/*@media screen and ( max-width : 568px ) {
+    #palette-wrapper {
+        width: 190px;
+    }
+}*/

@@ -16,16 +16,73 @@ i{
     left: 12px;
 }
 
-@media screen and ( max-width : 568px ) {
-    label {
-        font-size: .75em;
+/* ============== MEDIA QUERIES: iPad Landscape ============== */
+@media only screen and (max-width: 1024px) {
+
+    .colorCircle {
+        height: 60px;
+        width: 60px;
     }
+
+    .paletteColor {
+        height: 30px;
+        width: 30px;
+    }    
+
+}
+
+/* ============== MEDIA QUERIES: TABLET CSS ============== */
+@media only screen and (max-width: 900px) {
+    .colorCircle {
+        height: 45px;
+        width: 45px;
+    }
+    
+    label {
+        font-size: 0.8em;
+    }
+
+    .paletteColor {
+        height: 20px;
+        width: 20px;
+    }
+}
+
+/* ============== MEDIA QUERIES: Phones Portrait ============== */
+@media screen and ( max-width : 568px ) {
+    
+    label {
+        font-size: 0.8em;
+    }
+    
     i {
         top: 4px;
         left: 6px;
     }
     .colorCircle{
-        height: 50px;
-        width: 50px;
+        height: 45px;
+        width: 45px;
+    }
+
+    .paletteColor {
+        height: 20px;
+        width: 20px;
+    }
+}
+
+/* ============== MEDIA QUERIES: iphone ============== */
+@media screen and ( max-width : 330px ) {
+    label {
+        font-size: .7em;
+    }
+
+    .colorCircle{
+        height: 40px;
+        width: 40px;
+    }
+
+    .paletteColor {
+        height: 20px;
+        width: 20px;
     }
 }

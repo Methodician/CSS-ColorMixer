@@ -39,3 +39,31 @@ color-circle {
 p {
   margin: 0
 }
+
+/* ============== MEDIA QUERIES: TABLET CSS ============== */
+@media only screen and (max-width: 900px) {
+    .fa-3x {
+      font-size: 2.1em;
+    }
+    .fa-2x {
+      font-size: 1.4em;
+    }
+
+    .palette-body {
+      width: 183px;
+    }
+}
+
+/* ============== MEDIA QUERIES: Phones Portrait ============== */
+/*@media screen and ( max-width : 568px ) {
+    .fa-3x {
+      font-size: 2em;
+    }
+    .fa-2x {
+      font-size: 1em;
+    }
+
+    .palette-body {
+      width: 140px;
+    }
+}*/

@@ -1,4 +1,4 @@
-<div id="mixerSettings" class="mixer-ui-set mixer-ui-left">
+<div id="mixerSettings" class="mixer-ui-set mixer-ui-left" [class.ui-left-with-palette]="paletteOpen">
   <span class="mixer-ui-item"></span>
   <button (click)="toggleAvg()" class="mixer-ui-item  btn btn-circle" [class.btn-success]="averageOn">
           AVG
@@ -6,10 +6,10 @@
   <button (click)="toggleAdd()" class="mixer-ui-item  btn btn-default btn-circle" [class.btn-success]="addOn"><i class="fa fa-plus"></i></button>
   <button (click)="toggleMinus()" class="mixer-ui-item  btn btn-default btn-circle" [class.btn-success]="minusOn"><i class="fa fa-minus"></i></button>
 </div>
-<div class="mixer-ui-set mixer-ui-left" id="rgbHex">
+<div class="mixer-ui-set mixer-ui-left" id="rgbHex" [class.ui-left-with-palette]="paletteOpen">
   <button (click)="toggleHex()" class="mixer-ui-item  btn btn-primary btn-circle">{{ showHex ? 'RGB' : 'HEX' }}</button>
 </div>
-<div id="clearColors" class="mixer-ui-set mixer-ui-left">
+<div id="clearColors" class="mixer-ui-set mixer-ui-left" [class.ui-left-with-palette]="paletteOpen">
   <span class="mixer-ui-item"></span>
   <button (click)="clearColors()" class="mixer-ui-item  btn btn-circle btn-danger">
           <i class="fa fa-trash"></i>
@@ -41,11 +41,11 @@
       <color-circle *ngFor="let color of coreColors" [deleteable]="false" [showHex]="showHex" [color]="color" [id]="'core-' + color.hex"
         (clicked)="pickColor($event)"></color-circle>
     </div>
-    <div *ngIf="paletteColors" id="paletteColors">
+    <div *ngIf="paletteColors" id="paletteColors" [class.palette-colors-palette-open]="paletteOpen">
       <color-circle *ngFor="let color of paletteColors" [deleteable]="false" [showHex]="showHex" [color]="color" [id]="'palette-' + color.hex"
         (clicked)="pickColor($event)"></color-circle>
     </div>
-    <perfect-scrollbar id="generatedColors" [class.compressed-for-palette]="paletteColors" [class.generated-colors-squished]="paletteOpen">
+    <perfect-scrollbar id="generatedColors" [class.compressed-for-palette]="paletteColors" [class.generated-colors-squished]="paletteOpen && !paletteColors">
       <color-circle *ngFor="let color of colors | reverse" [showHex]="showHex" [color]="color" [newestColorKey]="newestColor?.$key"
         [id]="color.$key" (clicked)="pickColor($event)"></color-circle>
     </perfect-scrollbar>
