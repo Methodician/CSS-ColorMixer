@@ -355,6 +355,9 @@ color-circle{
     #rgbHex {
         top: 218px;
     }
+    #paletteToggle {
+        top: 218px;
+    }
     #clearColors{
         top: 376px;
     }
